@@ -5,7 +5,7 @@ background(50);
 fill(50);
 stroke(255);
 rectMode(CENTER);
-rect(230,180,100,50);
+rect(230,180,200,50);
 
 
 fill(250);
