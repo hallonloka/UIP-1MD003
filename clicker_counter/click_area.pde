@@ -11,28 +11,25 @@ class ClickArea {
   
   void display(){
     pushMatrix();
-    fill(200);
+    fill(255, 255, 255, 100);
     stroke(0);
     rect(x, y, w, h, 4);
     popMatrix();
-    
-    fill(0);
-    textAlign(CENTER);
-    text("clicks: " + clicks, x + w / 2, y - 5);
+
     
     
   }
   
-  void mousePressed() {
-  if (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h) {
-    clicks++;
+  boolean isClicked() {
+    return(mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h);
   }
+    
+
 }
   
   
     
-  
-}
+
   
   
   

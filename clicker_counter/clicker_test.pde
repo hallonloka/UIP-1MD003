@@ -1,19 +1,21 @@
 ClickArea clickarea;
-ClickArea clickarea2;
+ProgressBar progressbar;
 
 void setup(){
-  size(700, 400);
-  clickarea = new ClickArea(233, 20, 233, 380);
-  clickarea2 = new ClickArea(20, 20, 10, 10);
+  size(700, 550);
+  clickarea = new ClickArea(210, 120, 250, 400);
+  progressbar = new ProgressBar(210, 30, 250, 40);
 }
 
 void draw (){
-  background(250);
+  background(190, 110, 150);
   clickarea.display();
-  clickarea2.display();
+  progressbar.display();
 }
 
 void mousePressed(){
-  clickarea.mousePressed();
-  clickarea2.mousePressed();
+  if(clickarea.isClicked()){
+    progressbar.registerClick();
+  }
+
 }
