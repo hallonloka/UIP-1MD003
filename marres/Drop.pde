@@ -22,10 +22,4 @@ class Drop {
     popMatrix();
   }
   
-  void dripDrop() {
-    float spawnX = width/2 + random(-cupWidth/4, cupWidth/4);
-    drops.add(new Drop(spawnX));
-  }
- 
-  
 }
