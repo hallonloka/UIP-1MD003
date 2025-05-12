@@ -7,7 +7,7 @@ class Drop {
     x = xPos;
     y = 0;
     speed = random(2, 4);
-    sizeScale = random(0.05, 0.12);
+    sizeScale = random(0.02, 0.07);
   }
 
   void update() {

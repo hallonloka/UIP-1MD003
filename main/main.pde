@@ -11,29 +11,33 @@ ProgressBar progressbar;
 
 void setup() {
   size(700, 550);
-  drip = loadShape("file.svg");
+  drip = loadShape("drop.svg");
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - 120, 120, 100);
   bean = new Bean();
   progressbar = new ProgressBar(100, 30, 200, 40);
 }
 
-void draw() { // 60 frames per sekund
+void draw() { // 60 frames per second
   background(238, 217, 196);
-  pushMatrix();
 
+  pushMatrix(); //Save current state to matrix stack
+
+  // Create variable that loops for rotating strokes
   float wave = 300*sin(radians(frameCount));
 
+  // Incrementally redraw strokes to animate
   for (int i = 0; i <500; i++) {
     rotate(50);
     stroke(250, 240, 230);
     line(850, i-wave/2, -850, i++);
   }
-  popMatrix();
 
+  popMatrix(); //Return state from matrix stack
+  
   // Draw Bean
   bean.draw();
-
+  
   // Draw Cup
   cup.update();
   cup.display();
