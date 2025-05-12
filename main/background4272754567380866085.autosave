@@ -1,0 +1,21 @@
+//float circleY = 0;
+
+void setup() {
+  size(736, 554);
+  frameRate(15);
+}
+
+void draw() {
+  background(238, 217, 196);
+  stroke(255,240,219);
+  float wave = 2000*sin(radians(frameCount));
+
+  for (int i = 0; i < 500; i++) {
+    rotate(50);
+    line(850, i-wave/2, -850, i++);
+    //stroke(217,185,155);
+    //line(-850, -i+wave, 550, i++);
+    //stroke(250, 240, 230);
+    //line(-850, i-wave, 850, i++);
+  }
+}

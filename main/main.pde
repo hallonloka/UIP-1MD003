@@ -19,23 +19,32 @@ void setup() {
 }
 
 void draw() { // 60 frames per sekund
-  background(255); // Rensa skärmen
+  background(238, 217, 196);
+  pushMatrix();
+
+  float wave = 300*sin(radians(frameCount));
+
+  for (int i = 0; i <500; i++) {
+    rotate(50);
+    stroke(250, 240, 230);
+    line(850, i-wave/2, -850, i++);
+  }
+  popMatrix();
 
   // Draw Bean
   bean.draw();
-  
+
   // Draw Cup
   cup.update();
   cup.display();
-  
-    // Update and draw all drops
+
+  // Update and draw all drops
   for (Drop d : drops) {
     d.update();
     d.display();
   }
-  
+
   progressbar.display();
-  
 }
 
 void mousePressed() {
