@@ -26,6 +26,19 @@ PShape star(float x, float y, float radius1, float radius2, int npoints) {
 }
 
 
+ShopItem[] createIcons(){
+  PShape icon1 = createCircle(0,0);
+  PShape icon2 = createRect(-10,-5);
+  PShape icon3 = star(0, 0, 15, 40, 10); 
+  
+  ShopItem[] shopItems = {
+    new ShopItem("Shop", 0, icon1, 0),
+    new ShopItem("Double Click", 50, icon1, 0),
+    new ShopItem("Auto Click", 100,icon3, 0.1),
+    new ShopItem("Mega Boost", 150, icon2, 0.5)
+  };
+  return shopItems;
+}
 
 
 

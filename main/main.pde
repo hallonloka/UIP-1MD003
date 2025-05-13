@@ -9,20 +9,27 @@ Bean bean;
 
 ProgressBar progressbar;
 
+PShape shopIcon;
+Shop shop;
+int playerClicks = 100; //TODO: Placeholder for clicks
+
 void setup() {
   size(700, 550);
   drip = loadShape("drop.svg");
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - 120, 120, 100);
   bean = new Bean();
-  progressbar = new ProgressBar(100, 30, 200, 40);
+  progressbar = new ProgressBar(30, 30, 200, 40);
+  
+  shopIcon = loadShape("shopIcon.svg");
+  ShopItem[] shopItems = createIcons();
+  shop = new Shop(499, 10, 200, 50, shopItems);
 }
 
 void draw() { // 60 frames per second
   background(238, 217, 196);
 
   pushMatrix(); //Save current state to matrix stack
-
   // Create variable that loops for rotating strokes
   float wave = 300*sin(radians(frameCount));
 
@@ -32,8 +39,13 @@ void draw() { // 60 frames per second
     stroke(250, 240, 230);
     line(850, i-wave/2, -850, i++);
   }
-
   popMatrix(); //Return state from matrix stack
+  
+  //Draw Progressbar 
+  progressbar.display();
+  
+  //Draw shop
+  shop.display(playerClicks);
   
   // Draw Bean
   bean.draw();
@@ -47,8 +59,7 @@ void draw() { // 60 frames per second
     d.update();
     d.display();
   }
-
-  progressbar.display();
+  
 }
 
 void mousePressed() {
@@ -58,4 +69,5 @@ void mousePressed() {
     cup.shake();
     progressbar.registerClick();
   }
+  shop.shopClick();
 }
