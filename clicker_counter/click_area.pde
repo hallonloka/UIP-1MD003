@@ -15,9 +15,6 @@ class ClickArea {
     stroke(0);
     rect(x, y, w, h, 4);
     popMatrix();
-
-    
-    
   }
   
   boolean isClicked() {

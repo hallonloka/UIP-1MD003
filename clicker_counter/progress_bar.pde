@@ -26,7 +26,6 @@ class ProgressBar{
     stroke(0);
     rect(x, y, w*levelProgress, h);
     popMatrix();
-
   }
   
   void writeLevel(){
