@@ -34,7 +34,6 @@ class Bean {
     line(15, 50, 15, 70);   // Höger ben stilla
 
     beanAngle += 0.1;
-
     popMatrix();
   }
 }

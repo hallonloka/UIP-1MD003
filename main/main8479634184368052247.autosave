@@ -40,7 +40,6 @@ void draw() { // 60 frames per second
   // Incrementally redraw strokes to animate
   for (int i = 0; i <500; i++) {
     rotate(50);
-    strokeWeight(1);
     stroke(250, 240, 230);
     line(850, i-wave/2, -850, i++);
   }
@@ -60,7 +59,6 @@ void draw() { // 60 frames per second
     d.display();
   }
 
-  strokeWeight(1);
   // Add progressbar and click tracker
   progressbar.display();
   tracker.display();
