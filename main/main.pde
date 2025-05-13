@@ -40,13 +40,18 @@ void draw() { // 60 frames per second
   
   // Draw Cup
   cup.update();
-  cup.display();
-
+  cup.displayEllips();
   // Update and draw all drops
   for (Drop d : drops) {
     d.update();
     d.display();
   }
+
+  cup.displayRect();
+
+
+
+
 
   progressbar.display();
 }

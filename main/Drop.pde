@@ -15,11 +15,13 @@ class Drop {
   }
 
   void display() {
+    if(y < (height - cupHeight)){
     pushMatrix();
     translate(x, y);
     scale(sizeScale);
     shape(drip, -drip.width/2, -drip.height/2); // Center the shape
     popMatrix();
+    }
   }
   
 }

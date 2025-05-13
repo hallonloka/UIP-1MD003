@@ -31,29 +31,35 @@ class Cup {
     }
   }
 
-  void display() {
-    pushMatrix();
-    translate(x, y);
-    rotate(angle);
+void displayRect() {
+  pushMatrix();
+  translate(x, y);
+  rotate(angle);
 
-    noStroke();
-    fill(85, 125, 170);
-    rectMode(CENTER);
-    rect(0, 40, width - 2, height);
-    ellipse(0, -10, width, 10);
+  noStroke();
+  fill(85, 125, 170); // Blue color for the cup
 
-    stroke(0);
-    strokeWeight(2);
-    noFill();
-    line(-width / 2, 40 - height / 2, -width / 2, 40 + height / 2);
-    line(width / 2, 40 - height / 2, width / 2, 40 + height / 2);
-    line(-width / 2, 40 + height / 2, width / 2, 40 + height / 2);
-    ellipse(0, -10, width, 10);
+  rectMode(CENTER);
+  rect(0, height/2, width, height);  // Positioned so top is open
 
-    strokeWeight(6);
-    arc(width/2, 40, 30, 50, -HALF_PI, HALF_PI);
-    popMatrix();
-  }
+  // Draw the bottom ellipse
+  fill(85, 125, 170); // darker base
+  ellipse(0, height, width, 20); // base of the cylinder
+
+  popMatrix();
+}
+
+  
+void displayEllips() {
+  pushMatrix();
+  translate(x, y);
+  rotate(angle);
+  noStroke();
+  fill(60, 90, 120); 
+  ellipse(0, -3, width, 20); 
+  popMatrix();
+}
+
 
   boolean isClicked(float mx, float my) {
     float localX = mx - x;
