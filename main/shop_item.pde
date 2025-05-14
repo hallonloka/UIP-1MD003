@@ -61,6 +61,7 @@ ShopItem[] createIcons(){
   PShape lightning = createLightning(0,0);
   PShape doubleCircle = doubleCircle(0,0);
   PShape star = star(0, 0, 15, 40, 10); 
+ 
   
   ShopItem[] shopItems = {
     new ShopItem("Double Click", 50, doubleCircle, 0.6),
