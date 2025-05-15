@@ -36,15 +36,41 @@ void displayRect() {
   translate(x, y);
   rotate(angle);
 
-  noStroke();
-  fill(85, 125, 170); // Blue color for the cup
-
+  //fyrkanten run koppen
+  stroke(0);
+  strokeWeight(2);
+  fill(85, 125, 170);
   rectMode(CENTER);
-  rect(0, height/2, width, height);  // Positioned so top is open
+  rect(0, height/2, width, height); 
 
-  // Draw the bottom ellipse
-  fill(85, 125, 170); // darker base
-  ellipse(0, height, width, 20); // base of the cylinder
+  // blåa delen av koppen
+  fill(85, 125, 170);
+  noStroke();
+  rectMode(CORNER);
+  rect(-width / 2, 0, width, height);
+
+  // kanterna svarta streck
+  stroke(0);
+  strokeWeight(3);
+  line(-width / 2, 0, -width / 2, height); 
+  line(width / 2, 0, width / 2, height);  
+
+  // runda av bottendelen av ikoppeb
+  noStroke();
+  fill(85, 125, 170);
+  arc(0, height-1, width, 20, 0, PI, OPEN);
+
+  // linjen vid botten
+  noFill();
+  stroke(0);
+  strokeWeight(3);
+  arc(0, height, width, 20, 0, PI, OPEN);
+
+  // Handtag
+  stroke(85, 125, 170);
+  strokeWeight(6);
+  noFill();
+  arc(width / 2, height / 2, 30, 50, -HALF_PI, HALF_PI);
 
   popMatrix();
 }
@@ -56,7 +82,7 @@ void displayEllips() {
   rotate(angle);
   noStroke();
   fill(60, 90, 120); 
-  ellipse(0, -3, width, 20); 
+  ellipse(0, 0, width, 20); 
   popMatrix();
 }
 
