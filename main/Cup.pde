@@ -52,6 +52,9 @@ class Cup {
 
     strokeWeight(6);
     arc(width/2, 40, 30, 50, -HALF_PI, HALF_PI);
+    
+    rectMode(CORNER); //Den måste resettas till corner för att det andra ska bli snyggt
+    strokeWeight(1); //Den här med
     popMatrix();
   }
 
