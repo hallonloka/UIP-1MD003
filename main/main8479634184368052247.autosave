@@ -13,9 +13,7 @@ Bean bean;
 
 ProgressBar progressbar;
 
-PShape shopIcon;
-Shop shop;
-int playerClicks = 100; //TODO: Placeholder for clicks
+Tracker tracker;
 
 void setup() {
   size(700, 550);
@@ -23,49 +21,44 @@ void setup() {
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - 120, 120, 100);
   bean = new Bean();
-  progressbar = new ProgressBar(30, 30, 200, 40);
-  
-  shopIcon = loadShape("shopIcon.svg");
-  ShopItem[] shopItems = createIcons();
-  shop = new Shop(499, 10, 200, 50, shopItems);
+
+  // Positions of the progress bar and clicker
+  progressbar = new ProgressBar(100, 30, 200, 40);
+  tracker = new Tracker(100, 100, clicks);
+
+  file = new SoundFile(this, "click.mp3");
 }
 
 void draw() { // 60 frames per second
   background(238, 217, 196);
 
   pushMatrix(); //Save current state to matrix stack
+
   // Create variable that loops for rotating strokes
   float wave = 300*sin(radians(frameCount));
 
   // Incrementally redraw strokes to animate
   for (int i = 0; i <500; i++) {
     rotate(50);
-    strokeWeight(1);
     stroke(250, 240, 230);
     line(850, i-wave/2, -850, i++);
   }
+
   popMatrix(); //Return state from matrix stack
-  
-  //Draw Progressbar 
-  progressbar.display();
-  
-  //Draw shop
-  shop.display(playerClicks);
-  
+
   // Draw Bean
   bean.draw();
 
   // Draw Cup
   cup.update();
-  cup.displayEllips();
+  cup.display();
+
   // Update and draw all drops
   for (Drop d : drops) {
     d.update();
     d.display();
   }
-  cup.displayRect();
 
-  strokeWeight(1);
   // Add progressbar and click tracker
   progressbar.display();
   tracker.display();
@@ -81,5 +74,4 @@ void mousePressed() {
     tracker.registerClick();
     file.play();
   }
-  shop.shopClick();
 }

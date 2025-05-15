@@ -71,6 +71,9 @@ void displayRect() {
   strokeWeight(6);
   noFill();
   arc(width / 2, height / 2, 30, 50, -HALF_PI, HALF_PI);
+    
+    rectMode(CORNER); //Den måste resettas till corner för att det andra ska bli snyggt
+    strokeWeight(1); //Den här med
 
   popMatrix();
 }
@@ -85,7 +88,6 @@ void displayEllips() {
   ellipse(0, 0, width, 20); 
   popMatrix();
 }
-
 
   boolean isClicked(float mx, float my) {
     float localX = mx - x;
