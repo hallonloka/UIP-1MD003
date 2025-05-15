@@ -31,71 +31,71 @@ class Cup {
     }
   }
 
-void displayRect() {
-  pushMatrix();
-  translate(x, y);
-  rotate(angle);
+  void displayRect() {
+    pushMatrix();
+    translate(x, y);
+    rotate(angle);
 
-  //fyrkanten run koppen
-  stroke(0);
-  strokeWeight(2);
-  fill(85, 125, 170);
-  rectMode(CENTER);
-  rect(0, height/2, width, height); 
+    //fyrkanten run koppen
+    stroke(0);
+    strokeWeight(2);
+    fill(85, 125, 170);
+    rectMode(CENTER);
+    rect(0, height/2, width, height);
 
-  // blåa delen av koppen
-  fill(85, 125, 170);
-  noStroke();
-  rectMode(CORNER);
-  rect(-width / 2, 0, width, height);
+    // blåa delen av koppen
+    fill(85, 125, 170);
+    noStroke();
+    rectMode(CORNER);
+    rect(-width / 2, 0, width, height);
 
-  // kanterna svarta streck
-  stroke(0);
-  strokeWeight(3);
-  line(-width / 2, 0, -width / 2, height); 
-  line(width / 2, 0, width / 2, height);  
+    // kanterna svarta streck
+    stroke(0);
+    strokeWeight(3);
+    line(-width / 2, 0, -width / 2, height);
+    line(width / 2, 0, width / 2, height);
 
-  // runda av bottendelen av ikoppeb
-  noStroke();
-  fill(85, 125, 170);
-  arc(0, height-1, width, 20, 0, PI, OPEN);
+    // runda av bottendelen av ikoppeb
+    noStroke();
+    fill(85, 125, 170);
+    arc(0, height-1, width, 20, 0, PI, OPEN);
 
-  // linjen vid botten
-  noFill();
-  stroke(0);
-  strokeWeight(3);
-  arc(0, height, width, 20, 0, PI, OPEN);
+    // linjen vid botten
+    noFill();
+    stroke(0);
+    strokeWeight(3);
+    arc(0, height, width, 20, 0, PI, OPEN);
 
-  // Handtag
-  stroke(85, 125, 170);
-  strokeWeight(6);
-  noFill();
-  arc(width / 2, height / 2, 30, 50, -HALF_PI, HALF_PI);
-    
+    // Handtag
+    stroke(85, 125, 170);
+    strokeWeight(6);
+    noFill();
+    arc(width / 2, height / 2, 30, 50, -HALF_PI, HALF_PI);
+
     rectMode(CORNER); //Den måste resettas till corner för att det andra ska bli snyggt
     strokeWeight(1); //Den här med
 
-  popMatrix();
-}
+    popMatrix();
+  }
 
-  
-void displayEllips() {
-  pushMatrix();
-  translate(x, y);
-  rotate(angle);
-  noStroke();
-  fill(60, 90, 120); 
-  ellipse(0, 0, width, 20); 
-  popMatrix();
-}
+
+  void displayEllips() {
+    pushMatrix();
+    translate(x, y);
+    rotate(angle);
+    noStroke();
+    fill(60, 90, 120);
+    ellipse(0, 0, width, 20);
+    popMatrix();
+  }
 
   boolean isClicked(float mx, float my) {
     float localX = mx - x;
     float localY = my - y;
-    return localX > -width/2 && 
-           localX < width/2 && 
-           localY > 40 - height/2 && 
-           localY < 40 + height/2;
+    return localX > -width/2 &&
+      localX < width/2 &&
+      localY > 40 - height/2 &&
+      localY < 40 + height/2;
   }
 
   void shake() {

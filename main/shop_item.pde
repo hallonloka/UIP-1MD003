@@ -134,7 +134,7 @@ PShape createLightning(float x, float y) {
 
   return bolt;
 }
-
+/*
 
 //Ska va 3d cube men funkar inte om man inte renderar med P3D i setup. Kommer från Example Wiggling
 PShape cube() {
@@ -176,6 +176,7 @@ PShape cube() {
   return cube;
 }
 
+
 void createFaceWithHole(PShape face) {
   face.beginShape(POLYGON);
   face.stroke(255, 0, 0);
@@ -200,12 +201,4 @@ void createFaceWithHole(PShape face) {
 
   face.endShape(CLOSE);
 }
-
-
-
-
-
-
-
-
-  
+*/

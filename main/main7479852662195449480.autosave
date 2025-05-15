@@ -25,11 +25,11 @@ void setup() {
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - 120, 120, 100);
   bean = new Bean();
-  progressbar = new ProgressBar(30, 100, 200, 40);
-  tracker = new Tracker(100, 120, clicks);
+  progressbar = new ProgressBar(30, 30, 200, 40);
+  tracker = new Tracker(100, 100, clicks);
 
   file = new SoundFile(this, "click.mp3");
-
+  
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
   shop = new Shop(499, 10, 200, 50, shopItems);
@@ -50,25 +50,25 @@ void draw() { // 60 frames per second
     line(850, i-wave/2, -850, i++);
   }
   popMatrix(); //Return state from matrix stack
-
-  //Draw Progressbar
+  
+  //Draw Progressbar 
   progressbar.display();
-
+  
   //Draw shop
   shop.display(playerClicks);
-
+  
   // Draw Bean
   bean.draw();
 
   // Draw Cup
   cup.update();
-  cup.displayEllips();
+  cup.display();
+
   // Update and draw all drops
   for (Drop d : drops) {
     d.update();
     d.display();
   }
-  cup.displayRect();
 
   strokeWeight(1);
   // Add progressbar and click tracker
