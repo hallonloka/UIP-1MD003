@@ -5,7 +5,7 @@ class Bean {
   void draw() {
     pushMatrix();
     float xOffset = sin(beanAngle) * 15; // Sidledsrörelse
-    translate(100 + xOffset, height - 100);
+    translate(width*0.1 + xOffset, height - 100);
     rotate(sin(beanAngle) * 0.1);
 
     float scaleFactor = 0.5; // Minska storlek
