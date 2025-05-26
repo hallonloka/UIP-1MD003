@@ -21,22 +21,23 @@ int playerClicks = 100; //TODO: Placeholder for clicks
 
 //
 
-PVector smallSize = new PVector(400, 300);
-PVector mediumSize = new PVector(700, 550);
-PVector largeSize = new PVector(1000, 800);
+//Vi skapar 3 förbestämda skärmstorlekar. Går 100% att ändra
+PVector smallSize = new PVector(350, 500); //mobil-vibe
+PVector mediumSize = new PVector(700, 550); //det som varit satt i main under development
+PVector largeSize = new PVector(1200, 650); //"fullscreen" på datorn   
 PVector screenSize;
 
 void settings(){
-  screenSize = mediumSize;
+  screenSize = largeSize;  //byt till önskad skärmstorlek
   size((int)screenSize.x, (int)screenSize.y);
 }
 
 void setup() {
   drip = loadShape("drop.svg");
   drops = new ArrayList<Drop>();
-  cup = new Cup(width/2, height - 120, 120, 100);
+  cup = new Cup(width/2, height - height*0.4, 120, 100);
   bean = new Bean();
-  progressbar = new ProgressBar(0.04*width, 0.1*height, 0.28*width, 0.07*height);
+  progressbar = new ProgressBar(0.28*width, 0.85*height, 0.5*width, 0.07*height);
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   file = new SoundFile(this, "click.mp3");
