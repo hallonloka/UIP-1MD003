@@ -1,8 +1,8 @@
 class Tracker{
-  int x, y;
+  float x, y;
   int clicks = 0;
   
-  Tracker(int x, int y, int clicks){
+  Tracker(float x, float y, int clicks){
     this.x = x;
     this.y = y;
     this.clicks = clicks;

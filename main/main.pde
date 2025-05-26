@@ -25,8 +25,8 @@ void setup() {
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - 120, 120, 100);
   bean = new Bean();
-  progressbar = new ProgressBar(30, 100, 200, 40);
-  tracker = new Tracker(100, 120, clicks);
+  progressbar = new ProgressBar(0.04*width, 0.1*height, 0.28*width, 0.07*height);
+  tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   file = new SoundFile(this, "click.mp3");
 
