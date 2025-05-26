@@ -19,8 +19,19 @@ PShape shopIcon;
 Shop shop;
 int playerClicks = 100; //TODO: Placeholder for clicks
 
+//
+
+PVector smallSize = new PVector(400, 300);
+PVector mediumSize = new PVector(700, 550);
+PVector largeSize = new PVector(1000, 800);
+PVector screenSize;
+
+void settings(){
+  screenSize = mediumSize;
+  size((int)screenSize.x, (int)screenSize.y);
+}
+
 void setup() {
-  size(700, 550);
   drip = loadShape("drop.svg");
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - 120, 120, 100);
