@@ -17,7 +17,6 @@ Tracker tracker;
 
 PShape shopIcon;
 Shop shop;
-int playerClicks = 100; //TODO: Placeholder for clicks
 
 void setup() {
   size(700, 550);
@@ -25,14 +24,14 @@ void setup() {
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - 120, 120, 100);
   bean = new Bean();
-  progressbar = new ProgressBar(30, 100, 200, 40);
+  progressbar = new ProgressBar(this, 30, 100, 200, 40);
   tracker = new Tracker(100, 120, clicks);
 
   file = new SoundFile(this, "click.mp3");
 
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(499, 10, 200, 50, shopItems);
+  shop = new Shop(this, 499, 10, 200, 50, shopItems);
 }
 
 void draw() { // 60 frames per second
@@ -55,7 +54,7 @@ void draw() { // 60 frames per second
   progressbar.display();
 
   //Draw shop
-  shop.display(playerClicks);
+  shop.display(clicks);
 
   // Draw Bean
   bean.draw();
@@ -83,6 +82,7 @@ void mousePressed() {
     drops.add(new Drop(spawnX));
     cup.shake();
     progressbar.registerClick();
+    clicks++;
     tracker.registerClick();
     file.play();
   }
