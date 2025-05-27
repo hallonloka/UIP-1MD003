@@ -50,7 +50,19 @@ void setup() {
 void draw() { // 60 frames per second
   background(238, 217, 196);
 
-  drawBackground();
+  
+  pushMatrix(); //Save current state to matrix stack
+  // Create variable that loops for rotating strokes
+  float wave = 300*sin(radians(frameCount));
+
+  // Incrementally redraw strokes to animate
+  for (int i = 0; i <500; i++) {
+    rotate(50);
+    strokeWeight(1);
+    stroke(250, 240, 230);
+    line(2000, i-wave/2, -2000, i++);
+  }
+  popMatrix(); //Return state from matrix stack
 
   //Draw Progressbar
   progressbar.display();
