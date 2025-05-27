@@ -36,4 +36,21 @@ class Bean {
     beanAngle += 0.1;
     popMatrix();
   }
+  
+  boolean beanIsClicked(float mx, float my) {
+  float xOffset = sin(beanAngle) * 15;
+  float beanX = width * 0.1 + xOffset;
+  float beanY = height - 100;
+
+  // Inverse transform mouse coordinates: move to bean space and scale
+  float scaleFactor = 0.5;
+  float localX = (mx - beanX) / scaleFactor;
+  float localY = (my - beanY) / scaleFactor;
+
+  // Check if inside the bean ellipse (60x100 centered at 0,0)
+  float rx = 30;  // ellipse width / 2
+  float ry = 50;  // ellipse height / 2
+  return sq(localX) / sq(rx) + sq(localY) / sq(ry) <= 1;
+}
+
 }
