@@ -1,0 +1,134 @@
+void drawTutorialScreen() {
+  
+  background(238, 217, 196);
+
+  pushMatrix(); //Save current state to matrix stack
+  // Create variable that loops for rotating strokes
+  float wave = 300*sin(radians(frameCount));
+
+  // Incrementally redraw strokes to animate
+  for (int i = 0; i <500; i++) {
+    rotate(50);
+    strokeWeight(1);
+    stroke(250, 240, 230);
+    line(850, i-wave/2, -850, i++);
+  }
+  popMatrix(); //Return state from matrix stack
+
+  //Draw Progressbar
+  progressbar.display();
+
+  //Draw shop
+  shop.display(playerClicks);
+
+  // Draw Bean
+  bean.draw();
+
+  // Draw Cup
+  cup.update();
+  cup.displayEllips();
+  // Update and draw all drops
+  for (Drop d : drops) {
+    d.update();
+    d.display();
+  }
+  cup.displayRect();
+
+  strokeWeight(1);
+  // Add progressbar and click tracker
+  progressbar.display();
+  tracker.display();
+  fill(255);
+  textSize(20);
+  textAlign(CENTER, CENTER);
+
+  if (tutorialStep == 0) {    
+    if (tracker.clicks <= 50) {
+    drawArrowToCup(cup.y, cup.x);
+    text("Click the cup and reach 50 clicks!", width/2, height/2 - 100);
+    }
+  }else if (tutorialStep == 1) {
+    if (!shop.expanded){
+      drawArrowToShop(shop.x , shop.y);
+      text("Click the shop to buy an upgrade!", width/2, height/2 - 100);
+    } 
+  }else if (tutorialStep == 2) {
+    if (!shop.expanded){
+      drawArrowToShop(shop.x , shop.y);
+      text("Buy the upgrade!", width/2, height/2 - 100);
+    }
+  }else if (tutorialStep == 3){
+    if (!shop.expanded){
+      drawArrowToShop(shop.x , shop.y);
+      text("Buy the upgrade!", width/2, height/2 - 100);
+    }
+  }
+
+  noStroke();
+}
+
+void drawArrowToCup(float cupX, float cupY) {
+  float fromX = cupX;         
+  float fromY = cupY- cup.height;        
+  float toX = cupX - cup.width/2;     
+  float toY = cupY;
+
+  stroke(255, 0, 0);
+  strokeWeight(4);
+  fill(255, 0, 0);
+
+  // Draw line from left to cup
+  line(fromX, fromY, toX, toY);
+
+  // Pulse effect
+  float baseSize = 12;
+  float pulse = sin(frameCount * 0.1) * 3;
+  float arrowSize = baseSize + pulse;
+
+  // Calculate angle (should be toward right)
+  float angle = atan2(toY - fromY, toX - fromX);
+
+  // Draw arrowhead at end
+  pushMatrix();
+  translate(toX, toY);
+  rotate(angle);
+  beginShape();
+  vertex(0, 0);
+  vertex(-arrowSize, -arrowSize / 2);
+  vertex(-arrowSize, arrowSize / 2);
+  endShape(CLOSE);
+  popMatrix();
+}
+
+void drawArrowToShop(float shopX, float shopY) {
+  float fromX = shopX - shop.w ;         
+  float fromY = shopY + shop.h/2;        
+  float toX = shopX + shop.w * 0.02;     
+  float toY = shopY + shop.h/2;
+
+  stroke(255, 0, 0);
+  strokeWeight(4);
+  fill(255, 0, 0);
+
+  // Draw line from left to cup
+  line(fromX, fromY, toX, toY);
+
+  // Pulse effect
+  float baseSize = 12;
+  float pulse = sin(frameCount * 0.1) * 3;
+  float arrowSize = baseSize + pulse;
+
+  // Calculate angle (should be toward right)
+  float angle = atan2(toY - fromY, toX - fromX);
+
+  // Draw arrowhead at end
+  pushMatrix();
+  translate(toX, toY);
+  rotate(angle);
+  beginShape();
+  vertex(0, 0);
+  vertex(-arrowSize, -arrowSize / 2);
+  vertex(-arrowSize, arrowSize / 2);
+  endShape(CLOSE);
+  popMatrix();
+}
