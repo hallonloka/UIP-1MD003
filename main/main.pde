@@ -28,7 +28,7 @@ PVector largeSize = new PVector(1200, 650); //"fullscreen" på datorn
 PVector screenSize;
 
 void settings(){
-  screenSize = largeSize;  //byt till önskad skärmstorlek
+  screenSize = mediumSize;  //byt till önskad skärmstorlek. small, medium eller large
   size((int)screenSize.x, (int)screenSize.y);
 }
 
@@ -50,18 +50,7 @@ void setup() {
 void draw() { // 60 frames per second
   background(238, 217, 196);
 
-  pushMatrix(); //Save current state to matrix stack
-  // Create variable that loops for rotating strokes
-  float wave = 300*sin(radians(frameCount));
-
-  // Incrementally redraw strokes to animate
-  for (int i = 0; i <500; i++) {
-    rotate(50);
-    strokeWeight(1);
-    stroke(250, 240, 230);
-    line(850, i-wave/2, -850, i++);
-  }
-  popMatrix(); //Return state from matrix stack
+  drawBackground();
 
   //Draw Progressbar
   progressbar.display();
