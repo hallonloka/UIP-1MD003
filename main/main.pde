@@ -19,6 +19,8 @@ PShape shopIcon;
 Shop shop;
 int playerClicks = 100; //TODO: Placeholder for clicks
 
+PauseOverlay pauseOverlay;
+
 //
 
 //Vi skapar 3 förbestämda skärmstorlekar. Går 100% att ändra
@@ -45,6 +47,8 @@ void setup() {
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
   shop = new Shop(499, 10, 200, 50, shopItems);
+  
+  pauseOverlay = new PauseOverlay(80, 40);
 }
 
 void draw() { // 60 frames per second
@@ -63,6 +67,7 @@ void draw() { // 60 frames per second
   }
   popMatrix(); //Return state from matrix stack
 
+  if (!pauseOverlay.getPaused()) {
   //Draw Progressbar
   progressbar.display();
 
@@ -86,10 +91,16 @@ void draw() { // 60 frames per second
   // Add progressbar and click tracker
   progressbar.display();
   tracker.display();
+  }
+  pauseOverlay.updatePosition(); 
+  pauseOverlay.display(); // alltid sist så den ritas överst
 }
 
 // Event handler for when cup is pressed
 void mousePressed() {
+  pauseOverlay.isClicked(mouseX, mouseY);
+  if (pauseOverlay.getPaused()) return;
+  
   if (cup.isClicked(mouseX, mouseY)) {
     float spawnX = cup.x + random(-cup.width/4, cup.width/4);
     drops.add(new Drop(spawnX));
