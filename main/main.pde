@@ -1,5 +1,6 @@
 import processing.sound.*;
 SoundFile file;
+SoundFile yummySound;
 
 PShape drip;
 ArrayList<Drop> drops;
@@ -30,7 +31,7 @@ PVector largeSize = new PVector(1200, 650); //"fullscreen" på datorn
 PVector screenSize;
 
 void settings(){
-  screenSize = mediumSize;  //byt till önskad skärmstorlek. small, medium eller large
+  screenSize = largeSize;  //byt till önskad skärmstorlek. small, medium eller large
   size((int)screenSize.x, (int)screenSize.y);
 }
 
@@ -43,6 +44,7 @@ void setup() {
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   file = new SoundFile(this, "click.mp3");
+  yummySound = new SoundFile(this, "yummy.mp3");
 
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
@@ -110,5 +112,11 @@ void mousePressed() {
     tracker.registerClick();
     file.play();
   }
+  
+  if (bean.beanIsClicked(mouseX, mouseY)) {
+    yummySound.play();
+  }
+  
   shop.shopClick();
+  
 }
