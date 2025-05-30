@@ -31,7 +31,7 @@ PVector largeSize = new PVector(1200, 650); //"fullscreen" på datorn
 PVector screenSize;
 
 void settings(){
-  screenSize = largeSize;  //byt till önskad skärmstorlek. small, medium eller large
+  screenSize = mediumSize;  //byt till önskad skärmstorlek. small, medium eller large
   size((int)screenSize.x, (int)screenSize.y);
 }
 
@@ -97,6 +97,21 @@ void draw() { // 60 frames per second
   }
   pauseOverlay.updatePosition(); 
   pauseOverlay.display(); // alltid sist så den ritas överst
+}
+
+void resetGame() {
+  cup = new Cup(width/2, height - height*0.4, 120, 100);
+  bean = new Bean();
+  progressbar = new ProgressBar(0.28*width, 0.85*height, 0.5*width, 0.07*height);
+  tracker = new Tracker(0.06*width, 0.06*height, clicks);
+  
+  clicks = 0;
+  playerClicks = 100;
+  drops.clear();
+  
+  ShopItem[] shopItems = createIcons();
+  shop = new Shop(499, 10, 200, 50, shopItems);
+
 }
 
 // Event handler for when cup is pressed
