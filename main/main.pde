@@ -77,8 +77,16 @@ void draw() { // 60 frames per second
 
 // Event handler for when cup is pressed
 void mousePressed() {
+  // Check shop
+  boolean bought = shop.tryPurchaseAt(mouseX, mouseY, clicks);
+  if (bought) {
+    shop.purchaseSound.play();
+    return;
+  }
+
+  // Handle clicks
   if (cup.isClicked(mouseX, mouseY)) {
-    float spawnX = cup.x + random(-cup.width/4, cup.width/4);
+    float spawnX = cup.x + random(-cup.width / 4, cup.width / 4);
     drops.add(new Drop(spawnX));
     cup.shake();
     progressbar.registerClick();
@@ -86,5 +94,4 @@ void mousePressed() {
     tracker.registerClick();
     file.play();
   }
-  shop.shopClick();
 }
