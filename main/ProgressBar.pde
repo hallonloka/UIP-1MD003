@@ -1,7 +1,5 @@
-import processing.sound.*;
-
-class ProgressBar {
-  int x, y, w, h;
+class ProgressBar{
+  float x, y, w, h;
   float levelProgress = 0;
   int levelLimit = 10;
   int level = 0;
@@ -9,9 +7,9 @@ class ProgressBar {
   
   PApplet parent;
   SoundFile levelUpSound;
-
-  ProgressBar(PApplet p, int x, int y, int w, int h) {
     this.parent = p;
+    
+  ProgressBar(float x, float y, float w, float h){
     this.x = x;
     this.y = y;
     this.w = w;
@@ -21,7 +19,7 @@ class ProgressBar {
 
   void display() {
     drawBar();
-    writeProgress();
+    //writeProgress();
     writeLevel();
   }
 
@@ -36,7 +34,7 @@ class ProgressBar {
   void writeLevel() {
     fill(0);
     textAlign(CENTER);
-    text("level " + level, x + w / 2, y + 55);
+    text("level " + level, x + w / 2, y +0.1*height);
   }
 
   void writeProgress() {
