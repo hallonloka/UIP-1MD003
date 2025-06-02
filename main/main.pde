@@ -24,8 +24,6 @@ ArrayList<Drop> drops;
 
 // Initialize cup variables
 Cup cup;
-float cupWidth = 120;    //TODO???
-float cupHeight = 100;   //TODO??
 int clicks = 0;
 
 // Initializing other objects
@@ -47,7 +45,7 @@ PVector screenSize;
 // Settings of the game
 void settings() {
   // Change to desired screensize: smallSize, mediumSize, largeSize
-  screenSize = mediumSize;
+  screenSize = largeSize;
   size((int)screenSize.x, (int)screenSize.y);
 }
 
@@ -65,7 +63,7 @@ boolean tutorialComplete = false;
 void setup() {
   drip = loadShape("drop.svg");
   drops = new ArrayList<Drop>();
-  cup = new Cup(width/2, height - height*0.4, 120, 100);
+  cup = new Cup(width/2, height - height*0.4, height*0.25, height*0.2);
   bean = new Bean();
   progressbar = new ProgressBar(this, 0.28*width, 0.85*height, 0.5*width, 0.07*height);
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
@@ -207,7 +205,7 @@ void mousePressed() {
   }
 
   if (cup.isClicked(mouseX, mouseY)) {
-    float spawnX = cup.x + random(-cup.width / 4, cup.width / 4);
+    float spawnX = cup.x + random(-cup.cupWidth / 4, cup.cupWidth / 4);
     drops.add(new Drop(spawnX));
     cup.shake();
     progressbar.registerClick();
