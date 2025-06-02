@@ -65,6 +65,7 @@ void drawTutorialScreen() {
   }
 
   noStroke();
+  tutorialCheck();
 }
 
 void drawArrowToCup(float cupX, float cupY) {
@@ -131,4 +132,26 @@ void drawArrowToShop(float shopX, float shopY) {
   vertex(-arrowSize, arrowSize / 2);
   endShape(CLOSE);
   popMatrix();
+}
+
+void tutorialCheck() {
+    if (!tutorialComplete) {
+    if (tutorialStep == 0) {
+      if (tracker.clicks >=30) {
+        tutorialStep = 1;
+      }
+    } else if (tutorialStep == 1) { //click shop step
+      if (shop.expanded == true) {
+        tutorialStep = 2;
+      }
+    } else if (tutorialStep == 2) { //buy upgrade step
+      if (shop.tutorialBoolean == true) {
+        tutorialStep = 3;
+      }
+    } else if (tutorialStep == 3) {
+      if (tracker.clicks > 50) {
+        tutorialComplete= true;
+      }
+    }
+  }
 }
