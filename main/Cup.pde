@@ -7,14 +7,14 @@ class Cup {
   float angle = 0;
   boolean shaking = false;
   int shakeFrame = 0;
-  float width, height;
+  float cupWidth, cupHeight;
 
   // Constructor
   Cup(float x, float y, float w, float h) {
     this.x = x;
     this.y = y;
-    this.width = w;
-    this.height = h;
+    this.cupWidth = w;
+    this.cupHeight = h;
   }
 
   // Method for handeling shaking the cup and sets the cup-angle to a set amount of radians.
@@ -47,31 +47,31 @@ class Cup {
     strokeWeight(2);
     fill(85, 125, 170);
     rectMode(CENTER);
-    rect(0, height/2, width, height);
+    rect(0, cupHeight/2, cupWidth, cupHeight);
 
     fill(85, 125, 170);
     noStroke();
     rectMode(CORNER);
-    rect(-width / 2, 0, width, height);
+    rect(-cupWidth / 2, 0, cupWidth, cupHeight);
 
     stroke(0);
     strokeWeight(3);
-    line(-width / 2, 0, -width / 2, height);
-    line(width / 2, 0, width / 2, height);
+    line(-cupWidth / 2, 0, -cupWidth / 2, cupHeight);
+    line(cupWidth / 2, 0, cupWidth / 2, cupHeight);
 
     noStroke();
     fill(85, 125, 170);
-    arc(0, height-1, width, 20, 0, PI, OPEN);
+    arc(0, cupHeight-1, cupWidth, 20, 0, PI, OPEN);
 
     noFill();
     stroke(0);
     strokeWeight(3);
-    arc(0, height, width, 20, 0, PI, OPEN);
+    arc(0, cupHeight, cupWidth, 20, 0, PI, OPEN);
 
     stroke(85, 125, 170);
     strokeWeight(6);
     noFill();
-    arc(width / 2, height / 2, 30, 50, -HALF_PI, HALF_PI);
+    arc(cupWidth / 2, cupHeight / 2, 30, 50, -HALF_PI, HALF_PI);
 
     rectMode(CORNER); 
     strokeWeight(1); 
@@ -85,7 +85,7 @@ class Cup {
     rotate(angle);
     noStroke();
     fill(60, 90, 120);
-    ellipse(0, 0, width, 20);
+    ellipse(0, 0, cupWidth, 20);
     popMatrix();
   }
 
@@ -93,10 +93,10 @@ class Cup {
   boolean isClicked(float mx, float my) {
     float localX = mx - x;
     float localY = my - y;
-    return localX > -width/2 &&
-      localX < width/2 &&
-      localY > 40 - height/2 &&
-      localY < 40 + height/2;
+    return localX > -cupWidth/2 &&
+      localX < cupWidth/2 &&
+      localY > 40 - cupHeight/2 &&
+      localY < 40 + cupHeight/2;
   }
 
   // Method for initilating shake-mode for the cup

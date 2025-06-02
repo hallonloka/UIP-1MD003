@@ -69,8 +69,8 @@ void drawTutorialScreen() {
 
 void drawArrowToCup(float cupX, float cupY) {
   float fromX = cupX;         
-  float fromY = cupY- cup.height;        
-  float toX = cupX - cup.width/2;     
+  float fromY = cupY- cup.cupHeight;        
+  float toX = cupX - cup.cupWidth/2;     
   float toY = cupY;
 
   stroke(255, 0, 0);
