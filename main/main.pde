@@ -55,6 +55,7 @@ void settings() {
 final int STATE_START = 0;
 final int STATE_TUTORIAL = 1;
 final int STATE_GAME = 2;
+Boolean readyToMoveOn = false;
 
 int gameState = STATE_START;
 int tutorialStep = 0;
@@ -166,12 +167,13 @@ void resetGame() {
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   clicks = 0;
-  clicks = 100;
+  //clicks = 100;
   drops.clear();
 
   ShopItem[] shopItems = createIcons();
   shop = new Shop(this, 499, 10, 200, 50, shopItems);
 }
+
 
 // Handle pressed keys, only used to start tutorial when game is launched.
 void keyPressed() {
@@ -190,54 +192,27 @@ void keyPressed() {
 
 // Event handler for when mouse is pressed
 void mousePressed() {
+  
+  boolean bought = shop.tryPurchaseAt(mouseX, mouseY, clicks);
+  if (bought) {
+    shop.purchaseSound.play();
+    return;
+  }
 
-  // If we are in tutorial mode, clicks are handled differently
-  if ( !tutorialComplete) {
-    print(tutorialComplete);
-    if (tutorialStep == 0) {
-      if (tracker.clicks >=1 ) {
-        tutorialStep = 1;
-      }
-    } else if (tutorialStep == 1) {
-      if (shop.expanded) {
-        tutorialStep = 2;
-      }
-    } else if (tutorialStep == 2) {
-      if (tracker.clicks >20) { //TODO: detta måste ändras till när shopItem.activated = true eller nått
-        tutorialStep = 3;
-      }
-    } else if (tutorialStep == 3) {
-      if (tracker.clicks > 100) {
-        tutorialComplete= true;
-      }
-    }
+  pauseOverlay.isClicked(mouseX, mouseY);
+  if (pauseOverlay.getPaused()) return;
 
-    //If an item is bought, sound is played
-    boolean bought = shop.tryPurchaseAt(mouseX, mouseY, clicks);
-    if (bought) {
-      shop.purchaseSound.play();
-      return;
-    }
+  if (bean.beanIsClicked(mouseX, mouseY)) {
+    yummySound.play();
+  }
 
-    //If pause is clicked, pause game
-    pauseOverlay.isClicked(mouseX, mouseY);
-    if (pauseOverlay.getPaused()) return;
-
-    //Easter egg: if bean is clicked, it makes a sound.
-    if (bean.beanIsClicked(mouseX, mouseY)) {
-      yummySound.play();
-    }
-
-
-    //If cup is clicked, cup shakes, drops drop, clicks are registered, sound is played
-    if (cup.isClicked(mouseX, mouseY)) {
-      float spawnX = cup.x + random(-cup.width / 4, cup.width / 4);
-      drops.add(new Drop(spawnX));
-      cup.shake();
-      progressbar.registerClick();
-      clicks++;
-      tracker.registerClick();
-      file.play();
-    }
+  if (cup.isClicked(mouseX, mouseY)) {
+    float spawnX = cup.x + random(-cup.width / 4, cup.width / 4);
+    drops.add(new Drop(spawnX));
+    cup.shake();
+    progressbar.registerClick();
+    clicks++;
+    tracker.registerClick();
+    file.play();
   }
 }

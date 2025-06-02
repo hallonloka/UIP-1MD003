@@ -5,6 +5,7 @@ class Shop {
   ShopItem[] items;
   int selectedIndex = -1;
   boolean expanded = false;
+  boolean tutorialBoolean = false;
 
   PApplet parent;
   SoundFile purchaseSound;
@@ -24,7 +25,7 @@ class Shop {
 
     if (expanded) {
       for (int i = 0; i < items.length; i++) {
-        float itemY = y + h * i;
+        float itemY = y+ height*0.1 + h * i;
         boolean hovered = isMouseOverItem(i);
         boolean affordable = playerDrops >= items[i].price && !items[i].activated;
         items[i].display(x, itemY, w, h, affordable, hovered);
@@ -51,7 +52,7 @@ class Shop {
   }
 
   boolean isMouseOverItem(int index) {
-    float itemY = y + h * index;
+    float itemY = y + height * 0.1 + h * index;
     return mouseX > x && mouseX < x + w &&
       mouseY > itemY && mouseY < itemY + h;
   }
@@ -60,6 +61,7 @@ class Shop {
   boolean tryPurchaseAt(float mx, float my, int playerDrops) {
     if (mouseOverIcon()) {
       expanded = !expanded;
+      print("Shop expanded fr: " + expanded);
       return false;
     }
 
@@ -72,8 +74,9 @@ class Shop {
         if (!item.activated && playerDrops >= item.price) {
           item.activated = true;
           selectedIndex = i;
+          println("Activated item: " + item.name);
+          tutorialBoolean = true;
           expanded = false;
-          println(printActItemText + item.name);
           return true;
         } else {
           println(printNotValidShop);
@@ -87,14 +90,9 @@ class Shop {
     return false;
   }
 
-  void handleClick(int playerDrops) {
-    boolean bought = tryPurchaseAt(mouseX, mouseY, playerDrops);
-    if (bought) {
-      purchaseSound.play();
-    }
-  }
-  
-  boolean checkShopStatus(){
-  return expanded;
+
+  boolean checkShopStatus() {
+    print("checkShopStatus expanded: " + this.expanded);
+    return expanded;
   }
 }
