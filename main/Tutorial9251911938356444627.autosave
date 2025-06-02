@@ -22,7 +22,7 @@ void drawTutorialScreen() {
   shop.display(clicks);
 
   // Draw Bean
-  bean.beanDisplay();
+  bean.draw();
 
   // Draw Cup
   cup.update();
@@ -37,45 +37,39 @@ void drawTutorialScreen() {
   strokeWeight(1);
   // Add progressbar and click tracker
   progressbar.display();
-  //tracker.display();
+  tracker.display();
   fill(255);
   textSize(20);
   textAlign(CENTER, CENTER);
 
-//TODO: externalize strings
   if (tutorialStep == 0) {
     if (tracker.clicks <= 50) {
       drawArrowToCup(cup.y, cup.x);
-      text("Click the cup and reach 30 clicks!", width/2, height/2 - 100);
+      text("Click the cup and reach 50 clicks!", width/2, height/2 - 100);
     }
   } else if (tutorialStep == 1) {
-    if (shop.expanded == false) {
+    if (!shop.expanded) {
       drawArrowToShop(shop.x, shop.y);
       text("Click the shop to buy an upgrade!", width/2, height/2 - 100);
     }
   } else if (tutorialStep == 2) {
-    fill(255, 0, 0);
-    text("Buy the upgrade!", width/2, height/2 - 100);
-    if (shop.checkShopStatus()==true && shop.tutorialBoolean == true) { //TODO
-      //arrow to upgrade!!!!!
-      drawArrowToCup(cup.y, cup.x); //placeholder
-    } else drawArrowToShop(shop.x, shop.y);
+    if (!shop.expanded) {
+      drawArrowToShop(shop.x, shop.y);
+      text("Buy the upgrade!", width/2, height/2 - 100);
+    }
   } else if (tutorialStep == 3) {
-    if (shop.tutorialBoolean == true) {
-      fill(255, 0, 0);
-      text("Keep on clicking", width/2, height/2 - 100);
+    if (!shop.expanded) {
+      text("Keep on clicking!", width/2, height/2 - 100);
     }
   }
 
   noStroke();
-  
-  tutorialCheck();
 }
 
 void drawArrowToCup(float cupX, float cupY) {
-  float fromX = cupX+cup.width*2;         
-  float fromY = cupY- cup.height;        
-  float toX = fromX - cup.width;  
+  float fromX = cupX;
+  float fromY = cupY- cup.height;
+  float toX = cupX - cup.width/2;
   float toY = cupY;
 
   stroke(255, 0, 0);
@@ -136,26 +130,4 @@ void drawArrowToShop(float shopX, float shopY) {
   vertex(-arrowSize, arrowSize / 2);
   endShape(CLOSE);
   popMatrix();
-}
-
-void tutorialCheck() {
-  if (!tutorialComplete) {
-    if (tutorialStep == 0) {
-      if (tracker.clicks >=30) {
-        tutorialStep = 1;
-      }
-    } else if (tutorialStep == 1) { //click shop step
-      if (shop.expanded == true) {
-        tutorialStep = 2;
-      }
-    } else if (tutorialStep == 2) { //buy upgrade step
-      if (shop.tutorialBoolean == true) {
-        tutorialStep = 3;
-      }
-    } else if (tutorialStep == 3) {
-      if (tracker.clicks > 50) {
-        tutorialComplete= true;
-      }
-    }
-  }
 }
