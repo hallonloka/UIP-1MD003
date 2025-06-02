@@ -1,23 +1,23 @@
 class PauseOverlay {
   boolean isPaused = false;
-  int btnX, btnY, btnW, btnH;
+  float btnX, btnY, btnW, btnH;
   
-  int resetBtnW = 140;
-  int resetBtnH = 40;
-  int resetBtnX, resetBtnY;
+  float resetBtnW = width * 0.35;
+  float resetBtnH = height * 0.1;
+  float resetBtnX, resetBtnY;
 
 
-  PauseOverlay(int w, int h) {
+  PauseOverlay(float w, float h) {
     btnW = w;
     btnH = h;
     updatePosition(); // Sätt initial position
   }
 
   void updatePosition() {
-    btnX = width - btnW - 20; // 20 px från högerkanten
-    btnY = height - btnH - 20; // 20 px från nederkanten
+    btnX = width - btnW - width * 0.05; // ungefär 20 px från högerkanten
+    btnY = height - btnH - height * 0.05; // ungefär 20 px från nederkanten
     
-    resetBtnX = btnX - resetBtnW - 20; 
+    resetBtnX = btnX - resetBtnW - width * 0.05; 
     resetBtnY = btnY;
 
   }
@@ -35,7 +35,7 @@ class PauseOverlay {
   void drawPauseButton() {
     fill(180);
     stroke(width * 0.12);
-    rect(btnX, btnY, btnW, btnH, 10);
+    rect(btnX, btnY, btnW, btnH, height * 0.03);
     fill(0);
     textAlign(CENTER, CENTER);
     textSize(height * 0.04); //roughly equal to size(14)
@@ -62,7 +62,7 @@ class PauseOverlay {
 
   }
 
-  void isClicked(int mx, int my) {
+  void isClicked(float mx, float my) {
     if (mx > btnX && mx < btnX + btnW &&
         my > btnY && my < btnY + btnH) {
       isPaused = !isPaused;
