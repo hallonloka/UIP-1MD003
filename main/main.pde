@@ -30,7 +30,7 @@ PVector largeSize = new PVector(1200, 650); //"fullscreen" på datorn
 PVector screenSize;
 
 void settings() {
-  screenSize = mediumSize;  //byt till önskad skärmstorlek. small, medium eller large
+  screenSize = smallSize;  //byt till önskad skärmstorlek. small, medium eller large
   size((int)screenSize.x, (int)screenSize.y);
 }
 
@@ -57,7 +57,7 @@ void setup() {
 
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(this, width * 0.7, height * 0.05, width * 0.25, height * 0.09, shopItems);
+  shop = new Shop(this, width * 0.65, height * 0.05, width * 0.40, height * 0.09, shopItems);
 
   pauseOverlay = new PauseOverlay(80, 40);
 }
