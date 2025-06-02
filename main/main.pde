@@ -57,7 +57,7 @@ void setup() {
 
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(this, 499, 10, 200, 50, shopItems);
+  shop = new Shop(this, width * 0.7, height * 0.05, width * 0.25, height * 0.09, shopItems);
 
   pauseOverlay = new PauseOverlay(80, 40);
 }
@@ -79,10 +79,10 @@ void draw() {
 void drawStartScreen() {
   background(200, 220, 255);
   textAlign(CENTER, CENTER);
-  textSize(32);
+  textSize(height * 0.075); //roughly equal to size(32)
   fill(0);
   text("Welcome to Cookie Clicker!", width/2, height/2 - 40);
-  textSize(20);
+  textSize(height * 0.05); //roughly equal to size(20)
   text("Press ENTER to Start", width/2, height/2);
 }
 
@@ -97,7 +97,7 @@ void drawGameScreen() { // 60 frames per second
   // Incrementally redraw strokes to animate
   for (int i = 0; i <500; i++) {
     rotate(50);
-    strokeWeight(1);
+    strokeWeight(height * 0.001);
     stroke(250, 240, 230);
     line(2000, i-wave/2, -2000, i++);
   }
@@ -123,7 +123,7 @@ void drawGameScreen() { // 60 frames per second
     }
     cup.displayRect();
 
-    strokeWeight(1);
+    strokeWeight(height * 0.001);
     // Add progressbar and click tracker
     progressbar.display();
     tracker.display();
@@ -139,11 +139,10 @@ void resetGame() {
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   clicks = 0;
-  //clicks = 100;
   drops.clear();
 
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(this, 499, 10, 200, 50, shopItems);
+  shop = new Shop(this, width * 0.7, height * 0.05, width * 0.25, height * 0.09, shopItems);
 }
 
 

@@ -34,11 +34,11 @@ class PauseOverlay {
 
   void drawPauseButton() {
     fill(180);
-    stroke(50);
+    stroke(width * 0.12);
     rect(btnX, btnY, btnW, btnH, 10);
     fill(0);
     textAlign(CENTER, CENTER);
-    textSize(14);
+    textSize(height * 0.04); //roughly equal to size(14)
     text(isPaused ? "Return" : "Pause", btnX + btnW/2, btnY + btnH/2);
   }
 
@@ -50,14 +50,14 @@ class PauseOverlay {
 
   fill(0);
   textAlign(CENTER, CENTER);
-  textSize(32);
+  textSize(height * 0.075); //roughly equal to size(32)
   text("Game is paused", width/2, height/2);
 
   fill(200);
-  stroke(50);
+  stroke(width * 0.12);
   rect(resetBtnX, resetBtnY, resetBtnW, resetBtnH, 10);
   fill(0);
-  textSize(14);
+  textSize(height * 0.04); //roughly equal to size(14)
   text("Restart", resetBtnX + resetBtnW/2, resetBtnY + resetBtnH/2);
 
   }

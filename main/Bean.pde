@@ -14,17 +14,17 @@ class Bean {
     // Rita själva bönan
     fill(102, 51, 0);
     noStroke();
-    ellipse(0, 0, 60, 100);
+    ellipse(0, 0, height * 0.15, height * 0.25);
 
     // Inre spricka
     stroke(80, 40, 0);
-    strokeWeight(3);
+    strokeWeight(height * 0.003);
     noFill();
-    arc(0, 0, 20, 80, -PI/2, PI/2);
+    arc(0, 0, height * 0.05, height * 0.20, -PI/2, PI/2);
 
     // Armar
     stroke(60, 30, 0);
-    strokeWeight(6);
+    strokeWeight(height * 0.008);
     float armOffset = sin(beanAngle * 2) * 20;
     line(-30, -30, -30 - armOffset, -60);
     line(30, -30, 30 + armOffset, -60);
