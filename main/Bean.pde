@@ -6,8 +6,8 @@ class Bean {
   // Angle of the bean
   float beanAngle = 0;
 
-  // Method for drawing the bean
-  void draw() {
+  // Ritning av bönan
+  void beanDisplay() {
     pushMatrix();
     // Offset to simulate the movement of the bean
     float xOffset = sin(beanAngle) * 15; 

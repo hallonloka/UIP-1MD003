@@ -3,7 +3,7 @@
 */
 
 // Main
-String welcomeText = "Welcome to Coffe clicker!";
+String welcomeText = "Welcome to Coffee clicker!";
 String pressToStart = "Press Enter to start: ";
 
 // Pause

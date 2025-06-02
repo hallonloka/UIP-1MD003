@@ -22,7 +22,7 @@ void drawTutorialScreen() {
   shop.display(clicks);
 
   // Draw Bean
-  bean.draw();
+  bean.beanDisplay();
 
   // Draw Cup
   cup.update();
