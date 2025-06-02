@@ -25,7 +25,7 @@ class Shop {
 
     if (expanded) {
       for (int i = 0; i < items.length; i++) {
-        float itemY = y+ height*0.1 + h * i;
+        float itemY = y + height * 0.1 + h * i;
         boolean hovered = isMouseOverItem(i);
         boolean affordable = playerDrops >= items[i].price && !items[i].activated;
         items[i].display(x, itemY, w, h, affordable, hovered);

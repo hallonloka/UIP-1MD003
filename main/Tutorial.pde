@@ -42,6 +42,7 @@ void drawTutorialScreen() {
   textSize(20);
   textAlign(CENTER, CENTER);
 
+//TODO: externalize strings
   if (tutorialStep == 0) {
     if (tracker.clicks <= 50) {
       drawArrowToCup(cup.x, cup.y);
@@ -67,6 +68,7 @@ void drawTutorialScreen() {
   }
 
   noStroke();
+  
   tutorialCheck();
 }
 

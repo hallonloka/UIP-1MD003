@@ -73,9 +73,9 @@ void setup() {
 
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(this, 499, 10, 200, 50, shopItems);
+  shop = new Shop(this, width * 0.7, height * 0.05, width * 0.25, height * 0.09, shopItems);
 
-  pauseOverlay = new PauseOverlay(80, 40);
+  pauseOverlay = new PauseOverlay(width * 0.2, height * 0.1);
 }
 
 
@@ -98,10 +98,10 @@ void draw() {
 void drawStartScreen() {
   background(200, 220, 255);
   textAlign(CENTER, CENTER);
-  textSize(32);
+  textSize(height * 0.075); //roughly equal to size(32)
   fill(0);
   text(welcomeText, width/2, height/2 - 40);
-  textSize(20);
+  textSize(height * 0.05); //roughly equal to size(20)
   text(pressToStart, width/2, height/2);
 }
 
@@ -118,7 +118,7 @@ void drawGameScreen() {
   // Incrementally redraw strokes to animate
   for (int i = 0; i <500; i++) {
     rotate(50);
-    strokeWeight(1);
+    strokeWeight(height * 0.001);
     stroke(250, 240, 230);
     line(2000, i-wave/2, -2000, i++);
   }
@@ -144,7 +144,7 @@ void drawGameScreen() {
     }
     cup.displayRect(); //Cup draw 2: The cups "body" is drawn later to make the drops "fall inside" the cup
 
-    strokeWeight(1); //Resetting the strokeWeight that the cup altered.
+    strokeWeight(height * 0.001); //Resetting the strokeWeight that the cup altered.
 
     // Add progressbar and click tracker
     progressbar.display();
@@ -165,15 +165,13 @@ void resetGame() {
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   clicks = 0;
-  //clicks = 100;
   drops.clear();
 
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(this, 499, 10, 200, 50, shopItems);
+  shop = new Shop(this, width * 0.7, height * 0.05, width * 0.25, height * 0.09, shopItems);
 }
 
 
-// Handle pressed keys, only used to start tutorial when game is launched.
 void keyPressed() {
   if (gameState == STATE_START) {
     if (key == ENTER || key == RETURN) {

@@ -38,10 +38,15 @@ class ProgressBar{
   void writeLevel() {
     fill(0);
     textAlign(CENTER);
-    text("level " + level, x + w / 2, y +0.1*height);
+    text("level " + level, width / 2, y +0.1 * height);
   }
- 
-  // Method for handling clicks and incrementing 
+
+  void writeProgress() {
+    fill(0);
+    textAlign(CENTER);
+    text(nf(levelProgress * 100, 0, 1) + "%", width / 2, y - 5);
+  }
+
   void registerClick() {
     // Check if the level-limit is reached
     if (this.clicks == this.levelLimit) {
