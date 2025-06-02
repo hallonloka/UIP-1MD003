@@ -19,7 +19,7 @@ void drawTutorialScreen() {
   progressbar.display();
 
   //Draw shop
-  shop.display(playerClicks);
+  shop.display(clicks);
 
   // Draw Bean
   bean.draw();

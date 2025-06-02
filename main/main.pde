@@ -30,7 +30,7 @@ PVector largeSize = new PVector(1200, 650); //"fullscreen" på datorn
 PVector screenSize;
 
 void settings(){
-  screenSize = smallSize;  //byt till önskad skärmstorlek. small, medium eller large
+  screenSize = mediumSize;  //byt till önskad skärmstorlek. small, medium eller large
   size((int)screenSize.x, (int)screenSize.y);
 }
 
