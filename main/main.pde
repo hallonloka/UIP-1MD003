@@ -1,6 +1,6 @@
 /* 
 File: main.pde
-This is the main file to the game Coffe Clicker. It handles setup, initializing objects, drawing and eventhandling. 
+This is the main file to the game Coffee Clicker. It handles setup, initializing objects, drawing and eventhandling. 
 
 Requires the following files: 
 drop.svg
@@ -123,38 +123,40 @@ void drawGameScreen() {
     line(2000, i-wave/2, -2000, i++);
   }
   popMatrix(); //Return state from matrix stack
-  /* End of moving backgriund */
+  /* End of moving background */
 
   //If game is not paused, display as usual
   if (!pauseOverlay.getPaused()) {
-    //Draw Progressbar
+    
+    //draw objects
     progressbar.display();
-  
-    //Draw shop
     shop.display(clicks);
-  
-    // Draw Bean
     bean.beanDisplay(); 
   
-    // Draw Cup
+    // The cup updates before drawing due to the shaking effect. It is then drawn in two steps.
     cup.update();
-    cup.displayEllips();
+    cup.displayEllips(); //Cup draw 1: The ellipse displays before the drops to get layering effect
+    
     // Update and draw all drops
     for (Drop d : drops) {
       d.update();
       d.display();
     }
-    cup.displayRect();
+    cup.displayRect(); //Cup draw 2: The cups "body" is drawn later to make the drops "fall inside" the cup
   
-    strokeWeight(1);
+    strokeWeight(1); //Resetting the strokeWeight that the cup altered. 
+    
     // Add progressbar and click tracker
     progressbar.display();
     tracker.display();
   }
+  
+  //If game is paused, display pause screen
   pauseOverlay.updatePosition(); 
-  pauseOverlay.display(); // alltid sist så den ritas överst
+  pauseOverlay.display(); // always draw last to get "on top" of the layering
 }
 
+//Resetting the game, making new instances of the objects
 void resetGame() {
   cup = new Cup(width/2, height - height*0.4, 120, 100);
   bean = new Bean();
@@ -167,9 +169,9 @@ void resetGame() {
   
   ShopItem[] shopItems = createIcons();
   shop = new Shop(this, 499, 10, 200, 50, shopItems);
-
 }
 
+//Handle pressed keys, only used to start tutorial when game is launched. 
 void keyPressed() {
   if (gameState == STATE_START) {
     if (key == ENTER || key == RETURN) {
@@ -184,8 +186,10 @@ void keyPressed() {
   }
 }
 
-// Event handler for when cup is pressed
+// Event handler for when mouse is pressed
 void mousePressed() {
+  
+  //If we are in tutorial mode, clicks are handled differently
   if ( !tutorialComplete) {
     print(tutorialComplete);
     if (tutorialStep == 0) {
@@ -197,7 +201,7 @@ void mousePressed() {
         tutorialStep = 2;
       }
     } else if (tutorialStep == 2) {
-      if (tracker.clicks >20){ //detta måste ändras till när shopItem.activated = true eller nått
+      if (tracker.clicks >20){ //TODO: detta måste ändras till när shopItem.activated = true eller nått
         tutorialStep = 3;
       }
     } else if (tutorialStep == 3){
@@ -205,20 +209,25 @@ void mousePressed() {
         tutorialComplete= true;
       }
     }
-
+    
+    //If an item is bought, sound is played
     boolean bought = shop.tryPurchaseAt(mouseX, mouseY, clicks);
     if (bought) {
       shop.purchaseSound.play();
       return;
     }
     
+    //If pause is clicked, pause game
     pauseOverlay.isClicked(mouseX, mouseY);
     if (pauseOverlay.getPaused()) return;
 
+    //Easter egg: if bean is clicked, it makes a sound. 
     if (bean.beanIsClicked(mouseX, mouseY)) {
       yummySound.play();
     }
     
+    
+    //If cup is clicked, cup shakes, drops drop, clicks are registered, sound is played
     if (cup.isClicked(mouseX, mouseY)) {
       float spawnX = cup.x + random(-cup.width / 4, cup.width / 4);
       drops.add(new Drop(spawnX));
