@@ -62,11 +62,11 @@ ShopItem[] createIcons() {
 
 
   ShopItem[] shopItems = {
-    new ShopItem("Triple Attack", 30, triangle, 0.3),
-    new ShopItem("No Negatives", 50, cross, 0.2),
-    new ShopItem("Mega Boost", 75, lightning, 0),
-    new ShopItem("Double Click", 100, doubleCircle, 0.6),
-    new ShopItem("Auto Click", 200, star, 0.1)
+    new ShopItem(itemOne, 30, triangle, 0.3),
+    new ShopItem(itemTwo, 50, cross, 0.2),
+    new ShopItem(itemThree, 75, lightning, 0),
+    new ShopItem(itemFour, 100, doubleCircle, 0.6),
+    new ShopItem(itemFive, 200, star, 0.1)
   };
   return shopItems;
 }

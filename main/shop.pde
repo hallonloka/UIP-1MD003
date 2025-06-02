@@ -73,10 +73,10 @@ class Shop {
           item.activated = true;
           selectedIndex = i;
           expanded = false;
-          println("Activated item: " + item.name);
+          println(printActItemText + item.name);
           return true;
         } else {
-          println("Not enough drops or item already activated.");
+          println(printNotValidShop);
           expanded = false;
           return false;
         }

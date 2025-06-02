@@ -45,22 +45,22 @@ void drawTutorialScreen() {
   if (tutorialStep == 0) {    
     if (tracker.clicks <= 50) {
     drawArrowToCup(cup.y, cup.x);
-    text("Click the cup and reach 50 clicks!", width/2, height/2 - 100);
+    text(stepZeroText, width/2, height/2 - 100);
     }
   }else if (tutorialStep == 1) {
     if (!shop.expanded){
       drawArrowToShop(shop.x , shop.y);
-      text("Click the shop to buy an upgrade!", width/2, height/2 - 100);
+      text(stepOneText, width/2, height/2 - 100);
     } 
   }else if (tutorialStep == 2) {
     if (!shop.expanded){
       drawArrowToShop(shop.x , shop.y);
-      text("Buy the upgrade!", width/2, height/2 - 100);
+      text(stepTwoText, width/2, height/2 - 100);
     }
   }else if (tutorialStep == 3){
     if (!shop.expanded){
       drawArrowToShop(shop.x , shop.y);
-      text("Buy the upgrade!", width/2, height/2 - 100);
+      text(stepThreeText, width/2, height/2 - 100);
     }
   }
 

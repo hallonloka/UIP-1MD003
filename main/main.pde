@@ -80,9 +80,9 @@ void drawStartScreen() {
   textAlign(CENTER, CENTER);
   textSize(32);
   fill(0);
-  text("Welcome to Cookie Clicker!", width/2, height/2 - 40);
+  text(welcomeText, width/2, height/2 - 40);
   textSize(20);
-  text("Press ENTER to Start", width/2, height/2);
+  text(pressToStart, width/2, height/2);
 }
 
 void drawGameScreen() { // 60 frames per second
