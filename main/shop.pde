@@ -5,6 +5,7 @@ class Shop {
   ShopItem[] items;
   int selectedIndex = -1;
   boolean expanded = false;
+  boolean tutorialBoolean = false;
 
   PApplet parent;
   SoundFile purchaseSound;
@@ -74,6 +75,7 @@ class Shop {
           selectedIndex = i;
           expanded = false;
           println("Activated item: " + item.name);
+          tutorialBoolean = true;
           return true;
         } else {
           println("Not enough drops or item already activated.");
@@ -87,12 +89,6 @@ class Shop {
     return false;
   }
 
-  void handleClick(int playerDrops) {
-    boolean bought = tryPurchaseAt(mouseX, mouseY, playerDrops);
-    if (bought) {
-      purchaseSound.play();
-    }
-  }
   
   boolean checkShopStatus(){
   return expanded;

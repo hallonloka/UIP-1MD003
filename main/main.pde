@@ -165,7 +165,6 @@ void keyPressed() {
 // Event handler for when cup is pressed
 void mousePressed() {
   if ( !tutorialComplete) {
-    print(tutorialComplete);
     if (tutorialStep == 0) {
       if (tracker.clicks >=1 ) {
         tutorialStep = 1;
@@ -175,7 +174,7 @@ void mousePressed() {
         tutorialStep = 2;
       }
     } else if (tutorialStep == 2) {
-      if (tracker.clicks >20){ //detta måste ändras till när shopItem.activated = true eller nått
+      if (shop.tutorialBoolean){ //detta måste ändras till när shopItem.activated = true eller nått
         tutorialStep = 3;
       }
     } else if (tutorialStep == 3){

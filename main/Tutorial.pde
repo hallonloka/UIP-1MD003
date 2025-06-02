@@ -53,14 +53,13 @@ void drawTutorialScreen() {
       text("Click the shop to buy an upgrade!", width/2, height/2 - 100);
     } 
   }else if (tutorialStep == 2) {
-    if (!shop.expanded){
+    if (shop.tutorialBoolean){
       drawArrowToShop(shop.x , shop.y);
       text("Buy the upgrade!", width/2, height/2 - 100);
     }
   }else if (tutorialStep == 3){
     if (!shop.expanded){
-      drawArrowToShop(shop.x , shop.y);
-      text("Buy the upgrade!", width/2, height/2 - 100);
+      text("Keep on clicking", width/2, height/2 - 100);
     }
   }
 
