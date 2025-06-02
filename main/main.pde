@@ -47,7 +47,7 @@ void setup() {
 
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(499, 10, 200, 50, shopItems);
+  shop = new Shop(this, 499, 10, 200, 50, shopItems);
   
   pauseOverlay = new PauseOverlay(80, 40);
 }
@@ -105,11 +105,11 @@ void resetGame() {
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
   
   clicks = 0;
-  playerClicks = 100;
+  clicks = 100;
   drops.clear();
   
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(499, 10, 200, 50, shopItems);
+  shop = new Shop(this, 499, 10, 200, 50, shopItems);
 
 }
 
@@ -140,6 +140,6 @@ void mousePressed() {
     yummySound.play();
   }
   
-  shop.shopClick();
+  //shop.shopClick();
   
 }

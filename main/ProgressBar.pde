@@ -7,7 +7,7 @@ class ProgressBar{
   
   PApplet parent;
   SoundFile levelUpSound;
-    this.parent = p;
+ 
     
   ProgressBar(float x, float y, float w, float h){
     this.x = x;

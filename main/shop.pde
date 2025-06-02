@@ -16,7 +16,7 @@ class Shop {
     this.w = w;
     this.h = h;
     this.items = items;
-    this.purchaseSound = new SoundFile(parent, "shop_item_6.mp3");
+    this.purchaseSound = new SoundFile(parent, "shop_item_2.mp3");
   }
 
   void display(int playerDrops) {
