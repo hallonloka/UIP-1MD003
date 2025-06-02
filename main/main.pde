@@ -59,7 +59,7 @@ void setup() {
   ShopItem[] shopItems = createIcons();
   shop = new Shop(this, width * 0.65, height * 0.05, width * 0.40, height * 0.09, shopItems);
 
-  pauseOverlay = new PauseOverlay(80, 40);
+  pauseOverlay = new PauseOverlay(width * 0.2, height * 0.1);
 }
 
 void draw() {
