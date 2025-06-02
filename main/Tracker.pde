@@ -11,7 +11,7 @@ class Tracker{
   void display() {
     fill(0);
     textAlign(CENTER);
-    text("Clicks: " + clicks, x, y);
+    text("Clicks: " + clicks, width / 8, y);
   }
 
 
