@@ -37,7 +37,7 @@ void drawTutorialScreen() {
   strokeWeight(1);
   // Add progressbar and click tracker
   progressbar.display();
-  tracker.display();
+  //tracker.display();
   fill(255);
   textSize(20);
   textAlign(CENTER, CENTER);
