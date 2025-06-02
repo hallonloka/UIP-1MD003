@@ -1,5 +1,6 @@
 import processing.sound.*;
 SoundFile file;
+SoundFile yummySound;
 
 PShape drip;
 ArrayList<Drop> drops;
@@ -18,25 +19,43 @@ Tracker tracker;
 PShape shopIcon;
 Shop shop;
 
+PauseOverlay pauseOverlay;
+
+//
+
+//Vi skapar 3 förbestämda skärmstorlekar. Går 100% att ändra
+PVector smallSize = new PVector(350, 500); //mobil-vibe
+PVector mediumSize = new PVector(700, 550); //det som varit satt i main under development
+PVector largeSize = new PVector(1200, 650); //"fullscreen" på datorn   
+PVector screenSize;
+
+void settings(){
+  screenSize = smallSize;  //byt till önskad skärmstorlek. small, medium eller large
+  size((int)screenSize.x, (int)screenSize.y);
+}
+
 void setup() {
-  size(700, 550);
   drip = loadShape("drop.svg");
   drops = new ArrayList<Drop>();
-  cup = new Cup(width/2, height - 120, 120, 100);
+  cup = new Cup(width/2, height - height*0.4, 120, 100);
   bean = new Bean();
-  progressbar = new ProgressBar(this, 30, 100, 200, 40);
-  tracker = new Tracker(100, 120, clicks);
+  progressbar = new ProgressBar(this, 0.28*width, 0.85*height, 0.5*width, 0.07*height);
+  tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   file = new SoundFile(this, "click.mp3");
+  yummySound = new SoundFile(this, "yummy.mp3");
 
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
   shop = new Shop(this, 499, 10, 200, 50, shopItems);
+  
+  pauseOverlay = new PauseOverlay(80, 40);
 }
 
 void draw() { // 60 frames per second
   background(238, 217, 196);
 
+  
   pushMatrix(); //Save current state to matrix stack
   // Create variable that loops for rotating strokes
   float wave = 300*sin(radians(frameCount));
@@ -46,10 +65,11 @@ void draw() { // 60 frames per second
     rotate(50);
     strokeWeight(1);
     stroke(250, 240, 230);
-    line(850, i-wave/2, -850, i++);
+    line(2000, i-wave/2, -2000, i++);
   }
   popMatrix(); //Return state from matrix stack
 
+  if (!pauseOverlay.getPaused()) {
   //Draw Progressbar
   progressbar.display();
 
@@ -73,6 +93,24 @@ void draw() { // 60 frames per second
   // Add progressbar and click tracker
   progressbar.display();
   tracker.display();
+  }
+  pauseOverlay.updatePosition(); 
+  pauseOverlay.display(); // alltid sist så den ritas överst
+}
+
+void resetGame() {
+  cup = new Cup(width/2, height - height*0.4, 120, 100);
+  bean = new Bean();
+  progressbar = new ProgressBar(this, 0.28*width, 0.85*height, 0.5*width, 0.07*height);
+  tracker = new Tracker(0.06*width, 0.06*height, clicks);
+  
+  clicks = 0;
+  clicks = 100;
+  drops.clear();
+  
+  ShopItem[] shopItems = createIcons();
+  shop = new Shop(this, 499, 10, 200, 50, shopItems);
+
 }
 
 // Event handler for when cup is pressed
@@ -85,6 +123,9 @@ void mousePressed() {
   }
 
   // Handle clicks
+  pauseOverlay.isClicked(mouseX, mouseY);
+  if (pauseOverlay.getPaused()) return;
+  
   if (cup.isClicked(mouseX, mouseY)) {
     float spawnX = cup.x + random(-cup.width / 4, cup.width / 4);
     drops.add(new Drop(spawnX));
@@ -94,4 +135,11 @@ void mousePressed() {
     tracker.registerClick();
     file.play();
   }
+  
+  if (bean.beanIsClicked(mouseX, mouseY)) {
+    yummySound.play();
+  }
+  
+  //shop.shopClick();
+  
 }

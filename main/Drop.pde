@@ -7,7 +7,7 @@ class Drop {
     x = xPos;
     y = 0;
     speed = random(2, 4);
-    sizeScale = random(0.02, 0.07);
+    sizeScale = random(0.00006*height, 0.00012*height);
   }
 
   void update() {
@@ -15,7 +15,7 @@ class Drop {
   }
 
   void display() {
-    if(y < (height - cupHeight)){
+    if(y < (height - height*0.35)){
     pushMatrix();
     translate(x, y);
     scale(sizeScale);
