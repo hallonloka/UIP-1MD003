@@ -7,13 +7,14 @@ class Tracker{
     this.y = y;
     this.clicks = clicks;
   }
-  
-  void display(){
+
+  void display() {
     fill(0);
     textAlign(CENTER);
     text("Clicks: " + clicks, x, y);
   }
-  
+
+
   // Function for increasing clicks
   void registerClick() {
     clicks++;
