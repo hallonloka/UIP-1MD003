@@ -1,3 +1,9 @@
+/*
+  Class: PauseOverlay
+    This class pauses the game with a grey overlay on the screen. 
+    On pause, the user can choose either to continue playing again, meaning the game will be resumed at the paused possition, 
+    or restart the game, meaning the game resets all variables.
+*/
 class PauseOverlay {
   boolean isPaused = false;
   int btnX, btnY, btnW, btnH;
@@ -6,32 +12,34 @@ class PauseOverlay {
   int resetBtnH = 40;
   int resetBtnX, resetBtnY;
 
-
+  //Constructor 
   PauseOverlay(int w, int h) {
     btnW = w;
     btnH = h;
-    updatePosition(); // Sätt initial position
+    updatePosition();
   }
 
+  // Method for setting button positions
   void updatePosition() {
-    btnX = width - btnW - 20; // 20 px från högerkanten
-    btnY = height - btnH - 20; // 20 px från nederkanten
+    btnX = width - btnW - 20; 
+    btnY = height - btnH - 20;
     
     resetBtnX = btnX - resetBtnW - 20; 
     resetBtnY = btnY;
 
   }
 
+  // Method for displaing the overlay and buttons
   void display() {
     if (isPaused) {
-      drawOverlay();      // Ritar overlay + text + "starta om"
-      drawPauseButton();  // Ritar "Fortsätt" ovanpå allt
+      drawOverlay();      
+      drawPauseButton();  
     } else {
-      drawPauseButton();  // Endast "Pause"-knapp i spel-läge
+      drawPauseButton(); 
     }
   }
 
-
+  // Method for drawing the pause-button as a rectangle 
   void drawPauseButton() {
     fill(180);
     stroke(50);
@@ -42,8 +50,8 @@ class PauseOverlay {
     text(isPaused ? returnText : pauseText, btnX + btnW/2, btnY + btnH/2);
   }
 
+  // Method for drawing the overlay
   void drawOverlay() {
-// drawOverlay()
   fill(255, 255, 255, 180);
   noStroke();
   rect(0, 0, width, height);
@@ -62,20 +70,23 @@ class PauseOverlay {
 
   }
 
+  // Method for mouseclick
   void isClicked(int mx, int my) {
+     // Check if mousepress is on pause-button
     if (mx > btnX && mx < btnX + btnW &&
         my > btnY && my < btnY + btnH) {
       isPaused = !isPaused;
     }
-    
+     // Check if mousepress is on reset-button
     if (isPaused &&
       mx > resetBtnX && mx < resetBtnX + resetBtnW &&
       my > resetBtnY && my < resetBtnY + resetBtnH) {
     resetGame(); 
     isPaused = false;
-  }
+    }
   }
 
+  // Method for checking if game is paused
   boolean getPaused() {
     return isPaused;
   }
