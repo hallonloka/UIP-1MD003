@@ -28,4 +28,4 @@ String itemOne = "Tripple Attack";
 String itemTwo = "No Negatives";
 String itemThree = "Mega Boost";
 String itemFour = "Double Click";
-String itemFFive = "Auto Click";
+String itemFive = "Auto Click";
