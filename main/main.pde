@@ -45,7 +45,7 @@ PVector screenSize;
 // Settings of the game
 void settings() {
   // Change to desired screensize: smallSize, mediumSize, largeSize
-  screenSize = largeSize;
+  screenSize = mediumSize;
   size((int)screenSize.x, (int)screenSize.y);
 }
 
