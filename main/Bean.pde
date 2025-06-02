@@ -2,7 +2,7 @@ class Bean {
   float beanAngle = 0; // Bönans rörelsevinkel
 
   // Ritning av bönan
-  void draw() {
+  void beanDisplay() {
     pushMatrix();
     float xOffset = sin(beanAngle) * 15; // Sidledsrörelse
     translate(width*0.1 + xOffset, height - 100);
