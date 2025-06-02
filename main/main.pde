@@ -166,7 +166,7 @@ void keyPressed() {
 void mousePressed() {
   if ( !tutorialComplete) {
     if (tutorialStep == 0) {
-      if (tracker.clicks >=1 ) {
+      if (tracker.clicks >=50 ) {
         tutorialStep = 1;
       }
     } else if (tutorialStep == 1) {
@@ -174,7 +174,7 @@ void mousePressed() {
         tutorialStep = 2;
       }
     } else if (tutorialStep == 2) {
-      if (shop.tutorialBoolean){ //detta måste ändras till när shopItem.activated = true eller nått
+      if (shop.tutorialBoolean){ 
         tutorialStep = 3;
       }
     } else if (tutorialStep == 3){
