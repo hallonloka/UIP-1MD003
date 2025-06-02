@@ -1,5 +1,5 @@
 void drawTutorialScreen() {
-  
+
   background(238, 217, 196);
 
   pushMatrix(); //Save current state to matrix stack
@@ -42,24 +42,26 @@ void drawTutorialScreen() {
   textSize(20);
   textAlign(CENTER, CENTER);
 
-  if (tutorialStep == 0) {    
+  if (tutorialStep == 0) {
     if (tracker.clicks <= 50) {
-    drawArrowToCup(cup.y, cup.x);
-    text("Click the cup and reach 30 clicks!", width/2, height/2 - 100);
+      drawArrowToCup(cup.y, cup.x);
+      text("Click the cup and reach 30 clicks!", width/2, height/2 - 100);
     }
-  }else if (tutorialStep == 1) {
-    if (shop.expanded == false){
-      drawArrowToShop(shop.x , shop.y);
+  } else if (tutorialStep == 1) {
+    if (shop.expanded == false) {
+      drawArrowToShop(shop.x, shop.y);
       text("Click the shop to buy an upgrade!", width/2, height/2 - 100);
-    } 
-  }else if (tutorialStep == 2) {
+    }
+  } else if (tutorialStep == 2) {
+    fill(255, 0, 0);
     text("Buy the upgrade!", width/2, height/2 - 100);
-    if (shop.checkShopStatus()==true && shop.tutorialBoolean == true){ //TODO
+    if (shop.checkShopStatus()==true && shop.tutorialBoolean == true) { //TODO
       //arrow to upgrade!!!!!
-     drawArrowToCup(cup.y, cup.x); //placeholder
-    } else drawArrowToShop(shop.x , shop.y);
-  }else if (tutorialStep == 3){
-    if (shop.tutorialBoolean == true){
+      drawArrowToCup(cup.y, cup.x); //placeholder
+    } else drawArrowToShop(shop.x, shop.y);
+  } else if (tutorialStep == 3) {
+    if (shop.tutorialBoolean == true) {
+      fill(255, 0, 0);
       text("Keep on clicking", width/2, height/2 - 100);
     }
   }
@@ -70,9 +72,9 @@ void drawTutorialScreen() {
 }
 
 void drawArrowToCup(float cupX, float cupY) {
-  float fromX = cupX;         
+  float fromX = cupX+cup.width*2;         
   float fromY = cupY- cup.height;        
-  float toX = cupX - cup.width/2;     
+  float toX = fromX - cup.width;  
   float toY = cupY;
 
   stroke(255, 0, 0);
@@ -103,9 +105,9 @@ void drawArrowToCup(float cupX, float cupY) {
 }
 
 void drawArrowToShop(float shopX, float shopY) {
-  float fromX = shopX - shop.w ;         
-  float fromY = shopY + shop.h/2;        
-  float toX = shopX + shop.w * 0.02;     
+  float fromX = shopX - shop.w ;
+  float fromY = shopY + shop.h/2;
+  float toX = shopX + shop.w * 0.02;
   float toY = shopY + shop.h/2;
 
   stroke(255, 0, 0);
@@ -136,7 +138,7 @@ void drawArrowToShop(float shopX, float shopY) {
 }
 
 void tutorialCheck() {
-    if (!tutorialComplete) {
+  if (!tutorialComplete) {
     if (tutorialStep == 0) {
       if (tracker.clicks >=30) {
         tutorialStep = 1;
