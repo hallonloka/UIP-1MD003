@@ -61,6 +61,7 @@ class Shop {
   boolean tryPurchaseAt(float mx, float my, int playerDrops) {
     if (mouseOverIcon()) {
       expanded = !expanded;
+      print("Shop expanded fr: " + expanded);
       return false;
     }
 
@@ -73,9 +74,9 @@ class Shop {
         if (!item.activated && playerDrops >= item.price) {
           item.activated = true;
           selectedIndex = i;
-          expanded = false;
           println("Activated item: " + item.name);
           tutorialBoolean = true;
+          expanded = false;
           return true;
         } else {
           println("Not enough drops or item already activated.");
@@ -89,8 +90,9 @@ class Shop {
     return false;
   }
 
-  
-  boolean checkShopStatus(){
-  return expanded;
+
+  boolean checkShopStatus() {
+    print("checkShopStatus expanded: " + this.expanded);
+    return expanded;
   }
 }
