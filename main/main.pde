@@ -172,7 +172,7 @@ void resetGame() {
   drops.clear();
 
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(this, width * 0.7, height * 0.05, width * 0.25, height * 0.09, shopItems);
+  shop = new Shop(this, width * 0.65, height * 0.01, width * 0.40, height * 0.09, shopItems);
 }
 
 // Method for getting keyboard inputs, only used in the startscreen
