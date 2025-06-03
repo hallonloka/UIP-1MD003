@@ -7,7 +7,7 @@
  click.mp3
  level_up.mp3
  yummy.mp3
- shop_item1.mp3
+ shop_item_2.mp3
  
  Version 0.1
  Author: Group xx
