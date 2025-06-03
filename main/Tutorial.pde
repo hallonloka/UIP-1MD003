@@ -11,10 +11,12 @@ void drawTutorialScreen() {
     rotate(50);
     strokeWeight(height * 0.001);
     stroke(250, 240, 230);
-    line(850, i-wave/2, -850, i++);
+    line(2000, i-wave/2, -2000, i++);
   }
   popMatrix(); //Return state from matrix stack
-
+ 
+  textSize(height * 0.04);
+  
   //Draw Progressbar
   progressbar.display();
 
@@ -37,7 +39,7 @@ void drawTutorialScreen() {
   strokeWeight(height * 0.001);
   // Add progressbar and click tracker
   progressbar.display();
-  //tracker.display();
+  tracker.display();
   fill(255);
   textSize(height * 0.05); //roughly equal to size(20)
   textAlign(CENTER, CENTER);
