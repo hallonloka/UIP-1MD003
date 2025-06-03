@@ -44,7 +44,7 @@ PVector screenSize;
 
 // Settings of the game
 void settings() {
-  screenSize = smallSize;  //byt till önskad skärmstorlek. small, medium eller large
+  screenSize = largeSize;  //byt till önskad skärmstorlek. small, medium eller large
   // Change to desired screensize: smallSize, mediumSize, largeSize
   size((int)screenSize.x, (int)screenSize.y);
 }
@@ -75,7 +75,7 @@ void setup() {
   ShopItem[] shopItems = createIcons();
   shop = new Shop(this, width * 0.65, height * 0.05, width * 0.40, height * 0.09, shopItems);
 
-  pauseOverlay = new PauseOverlay(width * 0.2, height * 0.1);
+  pauseOverlay = new PauseOverlay(width * 0.15, height * 0.1);
 }
 
 

@@ -8,7 +8,7 @@ class PauseOverlay {
   boolean isPaused = false;
   float btnX, btnY, btnW, btnH;
   
-  float resetBtnW = width * 0.35;
+  float resetBtnW = width * 0.15;
   float resetBtnH = height * 0.1;
   float resetBtnX, resetBtnY;
 
@@ -21,8 +21,8 @@ class PauseOverlay {
 
   // Method for setting button positions
   void updatePosition() {
-    btnX = width - btnW - width * 0.05; // ungefär 20 px från högerkanten
-    btnY = height - btnH - height * 0.05; // ungefär 20 px från nederkanten
+    btnX = width - btnW - width * 0.05; 
+    btnY = height - btnH - height * 0.05; 
     
     resetBtnX = btnX - resetBtnW - width * 0.05; 
     resetBtnY = btnY;
@@ -41,12 +41,13 @@ class PauseOverlay {
 
   // Method for drawing the pause-button as a rectangle 
   void drawPauseButton() {
-    fill(180);
+fill(isPaused ? color(0, 128, 0) : color(180));
+
     stroke(width * 0.12);
     rect(btnX, btnY, btnW, btnH, height * 0.03);
     fill(0);
     textAlign(CENTER, CENTER);
-    textSize(height * 0.04); //roughly equal to size(14)
+    textSize(height * 0.04);
     text(isPaused ? returnText : pauseText, btnX + btnW/2, btnY + btnH/2);
   }
 
@@ -58,14 +59,14 @@ class PauseOverlay {
 
   fill(0);
   textAlign(CENTER, CENTER);
-  textSize(height * 0.075); //roughly equal to size(32)
+  textSize(height * 0.075);
   text(pauseText, width/2, height/2);
 
-  fill(200);
+  fill(255,0,0);
   stroke(width * 0.12);
   rect(resetBtnX, resetBtnY, resetBtnW, resetBtnH, 10);
   fill(0);
-  textSize(height * 0.04); //roughly equal to size(14)
+  textSize(height * 0.04); 
   text(restartText, resetBtnX + resetBtnW/2, resetBtnY + resetBtnH/2);
 
   }
