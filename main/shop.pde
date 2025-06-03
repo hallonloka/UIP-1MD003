@@ -79,7 +79,7 @@ class Shop {
           expanded = false;
           return true;
         } else {
-          println("Not enough drops or item already activated.");
+          println(printNotValidShop);
           expanded = false;
           return false;
         }

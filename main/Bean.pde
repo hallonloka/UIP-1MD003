@@ -1,37 +1,43 @@
+/*
+  Class. Bean
+    This class creates a dancing coffeebean with waving arms.  
+*/
 class Bean {
-  float beanAngle = 0; // Bönans rörelsevinkel
+  // Angle of the bean
+  float beanAngle = 0;
 
   // Ritning av bönan
-  void draw() {
+  void beanDisplay() {
     pushMatrix();
-    float xOffset = sin(beanAngle) * 15; // Sidledsrörelse
-    translate(width*0.1 + xOffset, height - height * 0.25);
+    // Offset to simulate the movement of the bean
+    float xOffset = sin(beanAngle) * 15; 
+    translate(width * 0.1 + xOffset, height - height * 0.25);
     rotate(sin(beanAngle) * 0.1);
 
-    float scaleFactor = 0.5; // Minska storlek
+    // Scale the bean to fit different screen-sizes
+    float scaleFactor = 0.5;
     scale(scaleFactor);
-
-    // Rita själva bönan
+    
+    // Draws the bean
     fill(102, 51, 0);
     noStroke();
     ellipse(0, 0, height * 0.15, height * 0.25);
 
-    // Inre spricka
     stroke(80, 40, 0);
     strokeWeight(height * 0.003);
     noFill();
     arc(0, 0, height * 0.05, height * 0.20, -PI/2, PI/2);
 
-    // Armar
+    // Bean-arms
     stroke(60, 30, 0);
     strokeWeight(height * 0.008);
     float armOffset = sin(beanAngle * 2) * 20;
     line(-(height *  0.075), -(height *  0.075), -(height *  0.075) - armOffset, -(height *  0.15));
     line(height *  0.075, -(height *  0.075), height *  0.075 + armOffset, -(height *  0.15));
 
-    // Ben
-    line(-(height *  0.0375), height * 0.125, -(height *  0.0375), height * 0.175); // Vänster ben stilla
-    line(height *  0.0375, height * 0.125, height *  0.0375, height * 0.175);   // Höger ben stilla
+    // Bean-legs
+    line(-(height *  0.0375), height * 0.125, -(height *  0.0375), height * 0.175);
+    line(height *  0.0375, height * 0.125, height *  0.0375, height * 0.175);
 
     beanAngle += 0.1;
     popMatrix();

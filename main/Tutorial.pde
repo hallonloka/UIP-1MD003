@@ -22,7 +22,7 @@ void drawTutorialScreen() {
   shop.display(clicks);
 
   // Draw Bean
-  bean.draw();
+  bean.beanDisplay();
 
   // Draw Cup
   cup.update();
@@ -37,14 +37,15 @@ void drawTutorialScreen() {
   strokeWeight(1);
   // Add progressbar and click tracker
   progressbar.display();
-  tracker.display();
+  //tracker.display();
   fill(255);
   textSize(20);
   textAlign(CENTER, CENTER);
 
+//TODO: externalize strings
   if (tutorialStep == 0) {
     if (tracker.clicks <= 50) {
-      drawArrowToCup(cup.y, cup.x);
+      drawArrowToCup(cup.x, cup.y);
       text("Click the cup and reach 30 clicks!", width/2, height/2 - 100);
     }
   } else if (tutorialStep == 1) {
@@ -72,9 +73,9 @@ void drawTutorialScreen() {
 }
 
 void drawArrowToCup(float cupX, float cupY) {
-  float fromX = cupX+cup.width*2;         
-  float fromY = cupY- cup.height;        
-  float toX = fromX - cup.width;  
+  float fromX = cupX+cup.cupWidth*2;         
+  float fromY = cupY- cup.cupHeight;        
+  float toX = fromX - cup.cupWidth;       
   float toY = cupY;
 
   stroke(255, 0, 0);

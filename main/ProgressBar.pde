@@ -1,3 +1,8 @@
+/*
+  Class: ProgressBar
+  This class enables a progress bar to be animated
+  The amount of clicks is tracked and increments the progressbar that is animated. At certain milestones the game increments the level and resets the progressbar.
+*/
 class ProgressBar{
   float x, y, w, h;
   float levelProgress = 0;
@@ -7,8 +12,8 @@ class ProgressBar{
   
   PApplet parent;
   SoundFile levelUpSound;
- 
-    
+  
+ // Constructor
   ProgressBar(PApplet p, float x, float y, float w, float h){
     this.x = x;
     this.y = y;
@@ -16,13 +21,12 @@ class ProgressBar{
     this.h = h;
     levelUpSound = new SoundFile(p, "level_up.mp3");
   }
-
+  // Method for displaying the progressbar
   void display() {
     drawBar();
-    //writeProgress();
     writeLevel();
   }
-
+  // Method for drawing the progress bar
   void drawBar() {
     pushMatrix();
     fill(250);
@@ -30,7 +34,7 @@ class ProgressBar{
     rect(x, y, w * levelProgress, h);
     popMatrix();
   }
-
+  // Method for displaying the current level
   void writeLevel() {
     fill(0);
     textAlign(CENTER);
@@ -44,17 +48,19 @@ class ProgressBar{
   }
 
   void registerClick() {
+    // Check if the level-limit is reached
     if (this.clicks == this.levelLimit) {
       clicks = 0;
       level++;
+      // Increase the amount of clicks needed to level up
       levelLimit += 10;
       levelUpSound.play();
     }
-
     clicks++;
     calcProgress();
   }
 
+  // Calculate the progress of the clicks in accordance to level-limit
   void calcProgress() {
     levelProgress = (float) this.clicks / this.levelLimit;
   }
