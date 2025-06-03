@@ -39,7 +39,7 @@ class PauseOverlay {
     }
   }
 
-  // Method for drawing the pause-button as a rectangle 
+  // Method for drawing the pause-, and return-button as a rectangle 
   void drawPauseButton() {
 fill(isPaused ? color(0, 128, 0) : color(180));
 
@@ -62,13 +62,13 @@ fill(isPaused ? color(0, 128, 0) : color(180));
   textSize(height * 0.075);
   text(pauseText, width/2, height/2);
 
-  fill(255,0,0);
+  // Restart-button
+  fill(200);
   stroke(width * 0.12);
   rect(resetBtnX, resetBtnY, resetBtnW, resetBtnH, 10);
   fill(0);
   textSize(height * 0.04); 
   text(restartText, resetBtnX + resetBtnW/2, resetBtnY + resetBtnH/2);
-
   }
 
   void isClicked(float mx, float my) {

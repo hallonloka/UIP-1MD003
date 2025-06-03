@@ -65,7 +65,7 @@ void setup() {
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - height*0.4, height*0.25, height*0.2);
   bean = new Bean();
-  progressbar = new ProgressBar(this, 0.28*width, 0.85*height, 0.5*width, 0.07*height);
+  progressbar = new ProgressBar(this, 0.27*width, 0.85*height, 0.45*width, 0.07*height);
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   file = new SoundFile(this, "click.mp3");
@@ -98,7 +98,7 @@ void draw() {
 void drawStartScreen() {
   background(200, 220, 255);
   textAlign(CENTER, CENTER);
-  textSize(height * 0.075); //roughly equal to size(32)
+  textSize(height * 0.06); //roughly equal to size(32)
   fill(0);
   text(welcomeText, width/2, height/2 - 40);
   textSize(height * 0.05); //roughly equal to size(20)
@@ -165,6 +165,7 @@ void resetGame() {
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   clicks = 0;
+  tracker.clicks = 0;
   drops.clear();
 
   ShopItem[] shopItems = createIcons();
@@ -210,5 +211,5 @@ void mousePressed() {
     clicks++;
     tracker.registerClick();
     file.play();
-  }
+  }  
 }
