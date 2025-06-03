@@ -47,8 +47,9 @@ fill(isPaused ? color(0, 128, 0) : color(180));
     rect(btnX, btnY, btnW, btnH, height * 0.03);
     fill(0);
     textAlign(CENTER, CENTER);
-    textSize(height * 0.04);
+    textSize(height * 0.03);
     text(isPaused ? returnText : pauseText, btnX + btnW/2, btnY + btnH/2);
+    textSize(height * 0.04);
   }
 
   // Method for drawing the overlay
@@ -67,8 +68,9 @@ fill(isPaused ? color(0, 128, 0) : color(180));
   stroke(width * 0.12);
   rect(resetBtnX, resetBtnY, resetBtnW, resetBtnH, 10);
   fill(0);
-  textSize(height * 0.04); 
+  textSize(height * 0.03); 
   text(restartText, resetBtnX + resetBtnW/2, resetBtnY + resetBtnH/2);
+  textSize(height * 0.04);
   }
 
   void isClicked(float mx, float my) {
