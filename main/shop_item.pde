@@ -43,7 +43,7 @@ class ShopItem {
     fill(0);
     textAlign(LEFT, CENTER);
     if (screenSize == smallSize) {
-      textSize(10);
+      textSize(height * 0.02);
     } else textSize(height * 0.035);
     text(name + " ($" + price + ")", x + w * 0.25, y + 20);
   }
