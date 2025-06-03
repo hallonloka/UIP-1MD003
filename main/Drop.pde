@@ -1,13 +1,13 @@
 /*
-  Class Drop
- This class contains the variables and methods needed to display the drops falling when clicking the cup.
+  Class: Drop
+   This class contains the variables and methods needed to display the drops falling when clicking the cup.
  */
 class Drop {
   float x, y;
   float speed;
   float sizeScale;
 
-  // Create a drop
+  // Constructor
   Drop(float xPos) {
     x = xPos;
     y = 0;
@@ -15,11 +15,11 @@ class Drop {
     speed = random(2, 4);
     sizeScale = random(0.00006*height, 0.00012*height);
   }
-  // Increment the y-location of the drop
+  // Method for incrementing the y-location of the drop
   void update() {
     y += speed;
   }
-  // Display the drop in the right position
+  // Method for displaying the drop in the right position
   void display() {
 
     // Display the drop until it is in the cup

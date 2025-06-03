@@ -1,7 +1,8 @@
 /*
   Class: ProgressBar
-  This class enables a progress bar to be animated
-  The amount of clicks is tracked and increments the progressbar that is animated. At certain milestones the game increments the level and resets the progressbar.
+    This class enables a progress bar to be animated based on user interaction.
+    The amount of clicks is tracked and increments the progressbar that is animated. 
+    At certain milestones the game increments the level and resets the progressbar.
 */
 class ProgressBar{
   float x, y, w, h;
@@ -10,10 +11,11 @@ class ProgressBar{
   int level = 0;
   int clicks = 0;
   
+  // Reffering to parent (main) in order to access sound file.
   PApplet parent;
   SoundFile levelUpSound;
   
- // Constructor
+  // Constructor
   ProgressBar(PApplet p, float x, float y, float w, float h){
     this.x = x;
     this.y = y;
@@ -21,11 +23,13 @@ class ProgressBar{
     this.h = h;
     levelUpSound = new SoundFile(p, "level_up.mp3");
   }
+  
   // Method for displaying the progressbar
   void display() {
     drawBar();
     writeLevel();
   }
+  
   // Method for drawing the progress bar
   void drawBar() {
     pushMatrix();
@@ -34,19 +38,15 @@ class ProgressBar{
     rect(x, y, w * levelProgress, h);
     popMatrix();
   }
+  
   // Method for displaying the current level
   void writeLevel() {
     fill(0);
     textAlign(CENTER);
     text(progressBarLevel + level, width / 2, y +0.1 * height);
   }
-
-  void writeProgress() {
-    fill(0);
-    textAlign(CENTER);
-    text(nf(levelProgress * 100, 0, 1) + "%", width / 2, y - 5);
-  }
-
+  
+  // Method for proccessing a registered click 
   void registerClick() {
     // Check if the level-limit is reached
     if (this.clicks == this.levelLimit) {
@@ -60,7 +60,7 @@ class ProgressBar{
     calcProgress();
   }
 
-  // Calculate the progress of the clicks in accordance to level-limit
+  // Method for calculating the progress of the clicks in accordance to level-limit
   void calcProgress() {
     levelProgress = (float) this.clicks / this.levelLimit;
   }

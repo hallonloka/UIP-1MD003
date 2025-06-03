@@ -10,7 +10,7 @@
  shop_item_2.mp3
  
  Version 0.1
- Author: Group xx
+ Author: Nora Angéus, Maria Eriksson, John McLelland, Tova Radhe
  */
 
 // Importing sounds
@@ -18,7 +18,7 @@ import processing.sound.*;
 SoundFile file;
 SoundFile yummySound;
 
-// Initialize variables
+// Initialize drop variables
 PShape drip;
 ArrayList<Drop> drops;
 
@@ -36,16 +36,16 @@ PauseOverlay pauseOverlay;
 
 
 // Three different screensizes
-PVector smallSize = new PVector(350, 500); //mobile view
-PVector mediumSize = new PVector(700, 550); //square-like view
-PVector largeSize = new PVector(1200, 650); //Computer view
+PVector smallSize = new PVector(350, 500); // Mobile view
+PVector mediumSize = new PVector(700, 550); // Square-like view
+PVector largeSize = new PVector(1200, 650); // Computer view
 PVector screenSize;
 
 
-// Settings of the game
+// Method for settings of the game
 void settings() {
-  screenSize = smallSize;  //byt till önskad skärmstorlek. small, medium eller large
   // Change to desired screensize: smallSize, mediumSize, largeSize
+  screenSize = smallSize;
   size((int)screenSize.x, (int)screenSize.y);
 }
 
@@ -53,13 +53,13 @@ void settings() {
 final int STATE_START = 0;
 final int STATE_TUTORIAL = 1;
 final int STATE_GAME = 2;
-Boolean readyToMoveOn = false;
-
 int gameState = STATE_START;
+
+// Tutorial variables
 int tutorialStep = 0;
 boolean tutorialComplete = false;
 
-// Creating all object instances
+// Method for creating all object instances
 void setup() {
   drip = loadShape("drop.svg");
   drops = new ArrayList<Drop>();
@@ -73,13 +73,16 @@ void setup() {
 
   shopIcon = loadShape("shopIcon.svg");
   ShopItem[] shopItems = createIcons();
-  shop = new Shop(this, width * 0.65, height * 0.05, width * 0.40, height * 0.09, shopItems);
+  shop = new Shop(this, width * 0.65, height * 0.01, width * 0.40, height * 0.09, shopItems);
 
   pauseOverlay = new PauseOverlay(width * 0.15, height * 0.1);
 }
 
 
-// If we are in tutorial mode, the tutorial will play out. If not, the gameScreen will be drawn as normal.
+/* Method for drawing screen, 60 frames per second.
+   First the startscreen will be displayed.
+   Then if we are in tutorial mode, the tutorial will play out.
+   If not, the gameScreen will be drawn as normal.*/
 void draw() {
   background(255);
 
@@ -94,22 +97,22 @@ void draw() {
   }
 }
 
-// Start screen for the game
+// Method for start screen for the game
 void drawStartScreen() {
   background(200, 220, 255);
   textAlign(CENTER, CENTER);
-  textSize(height * 0.06); //roughly equal to size(32)
+  textSize(height * 0.06); 
   fill(0);
   text(welcomeText, width/2, height/2 - 40);
-  textSize(height * 0.05); //roughly equal to size(20)
+  textSize(height * 0.05);
   text(pressToStart, width/2, height/2);
 }
 
 
-// Drawing the game screen, 60 frames per second
+// Method for drawing the game screen
 void drawGameScreen() {
   background(238, 217, 196);
-  pushMatrix(); //Save current state to matrix stack
+  pushMatrix();
 
   /*Moving background */
   // Create variable that loops for rotating strokes
@@ -122,7 +125,7 @@ void drawGameScreen() {
     stroke(250, 240, 230);
     line(2000, i-wave/2, -2000, i++);
   }
-  popMatrix(); // Return state from matrix stack
+  popMatrix();
   /* End of moving background */
 
   // If game is not paused, display as usual
@@ -133,7 +136,7 @@ void drawGameScreen() {
     shop.display(clicks);
     bean.beanDisplay();
 
-    // The cup updates before drawing due to the shaking effect. It is then drawn in two steps.
+    // The cup updates before drawing to create the shaking effect. It is then drawn in two steps.
     cup.update();
     cup.displayEllips(); //Cup draw 1: The ellipse displays before the drops to get layering effect
 
@@ -142,7 +145,7 @@ void drawGameScreen() {
       d.update();
       d.display();
     }
-    cup.displayRect(); //Cup draw 2: The cups "body" is drawn later to make the drops "fall inside" the cup
+    cup.displayRect(); //Cup draw 2: The cup's "body" is drawn later to make the drops "fall inside" the cup
 
     strokeWeight(height * 0.001); //Resetting the strokeWeight that the cup altered.
 
@@ -157,9 +160,9 @@ void drawGameScreen() {
   pauseOverlay.display();
 }
 
-// Resetting the game, making new instances of the objects
+// Method for resetting the game, making new instances of the objects
 void resetGame() {
-  cup = new Cup(width/2, height - height*0.4, 120, 100);
+  cup = new Cup(width/2, height - height*0.4, height*0.25, height*0.2);
   bean = new Bean();
   progressbar = new ProgressBar(this, 0.28*width, 0.85*height, 0.5*width, 0.07*height);
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
@@ -172,37 +175,32 @@ void resetGame() {
   shop = new Shop(this, width * 0.7, height * 0.05, width * 0.25, height * 0.09, shopItems);
 }
 
-
+// Method for getting keyboard inputs, only used in the startscreen
 void keyPressed() {
   if (gameState == STATE_START) {
     if (key == ENTER || key == RETURN) {
       gameState = STATE_GAME;
-    } else if (key == 't' || key == 'T') {
-      gameState = STATE_TUTORIAL;
-    }
-  } else if (gameState == STATE_TUTORIAL) {
-    if (key == 'b' || key == 'B') {
-      gameState = STATE_START;
     }
   }
 }
 
 // Event handler for when mouse is pressed
 void mousePressed() {
-  
+  // Check if item was bought with click
   boolean bought = shop.tryPurchaseAt(mouseX, mouseY, clicks);
   if (bought) {
     shop.purchaseSound.play();
     return;
   }
-
+  // Check if game was paused with click
   pauseOverlay.isClicked(mouseX, mouseY);
   if (pauseOverlay.getPaused()) return;
 
+  // Easter egg: Sound if bean is clicked
   if (bean.beanIsClicked(mouseX, mouseY)) {
     yummySound.play();
   }
-
+  // Check if cup was clicked. If so, register click
   if (cup.isClicked(mouseX, mouseY)) {
     float spawnX = cup.x + random(-cup.cupWidth / 4, cup.cupWidth / 4);
     drops.add(new Drop(spawnX));
@@ -211,5 +209,5 @@ void mousePressed() {
     clicks++;
     tracker.registerClick();
     file.play();
-  }  
+  }
 }

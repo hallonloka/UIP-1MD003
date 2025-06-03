@@ -1,24 +1,24 @@
 /*
   Class. Bean
-    This class creates a dancing coffeebean with waving arms.  
-*/
+ This class creates a dancing coffee bean with waving arms.
+ */
 class Bean {
   // Angle of the bean
   float beanAngle = 0;
 
-  // Ritning av bönan
+  // Method for drawing the bean
   void beanDisplay() {
     pushMatrix();
     // Offset to simulate the movement of the bean
-    float xOffset = sin(beanAngle) * 15; 
+    float xOffset = sin(beanAngle) * 15;
     translate(width * 0.1 + xOffset, height - height * 0.25);
     rotate(sin(beanAngle) * 0.1);
 
     // Scale the bean to fit different screen-sizes
     float scaleFactor = 0.5;
     scale(scaleFactor);
-    
-    // Draws the bean
+
+    // Draws the bean-body
     fill(102, 51, 0);
     noStroke();
     ellipse(0, 0, height * 0.15, height * 0.25);
@@ -42,21 +42,19 @@ class Bean {
     beanAngle += 0.1;
     popMatrix();
   }
-  
+
+  // Method for checking if bean is clicked
   boolean beanIsClicked(float mx, float my) {
-  float xOffset = sin(beanAngle) * 15;
-  float beanX = width * 0.1 + xOffset;
-  float beanY = height - height * 0.25;
+    float xOffset = sin(beanAngle) * 15;
+    float beanX = width * 0.1 + xOffset;
+    float beanY = height - height * 0.25;
 
-  // Inverse transform mouse coordinates: move to bean space and scale
-  float scaleFactor = 0.5;
-  float localX = (mx - beanX) / scaleFactor;
-  float localY = (my - beanY) / scaleFactor;
+    float scaleFactor = 0.5;
+    float localX = (mx - beanX) / scaleFactor;
+    float localY = (my - beanY) / scaleFactor;
 
-  // Check if inside the bean ellipse (15% of height x 25% of height centered at 0,0)
-  float rx = height * 0.15 / 2;  // ellipse width / 2
-  float ry = height * 0.25 / 2;  // ellipse height / 2
-  return sq(localX) / sq(rx) + sq(localY) / sq(ry) <= 1;
-}
-
+    float rx = height * 0.15 / 2; 
+    float ry = height * 0.25 / 2;
+    return sq(localX) / sq(rx) + sq(localY) / sq(ry) <= 1;
+  }
 }

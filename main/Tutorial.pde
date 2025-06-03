@@ -1,19 +1,19 @@
+/* 
+  This is a separate tab containg the method for drawing the tutorial.
+*/
 void drawTutorialScreen() {
-
+  /* This part looks like main */ 
   background(238, 217, 196);
-
-  pushMatrix(); //Save current state to matrix stack
-  // Create variable that loops for rotating strokes
+  pushMatrix(); 
   float wave = 300*sin(radians(frameCount));
 
-  // Incrementally redraw strokes to animate
   for (int i = 0; i <500; i++) {
     rotate(50);
     strokeWeight(height * 0.001);
     stroke(250, 240, 230);
     line(2000, i-wave/2, -2000, i++);
   }
-  popMatrix(); //Return state from matrix stack
+  popMatrix(); 
  
   textSize(height * 0.04);
   
@@ -40,38 +40,41 @@ void drawTutorialScreen() {
   // Add progressbar and click tracker
   progressbar.display();
   tracker.display();
+  /* End of looking like main */
+  
   fill(255);
-  textSize(height * 0.05); //roughly equal to size(20)
+  textSize(height * 0.05); 
   textAlign(CENTER, CENTER);
 
+  // Drawing different instructions based on what step in the tutorial a player is on
   if (tutorialStep == 0) {
     if (tracker.clicks <= 50) {
       drawArrowToCup(cup.x, cup.y);
-      text(stepZeroText, width/2, height/2 - 100);
+      text(stepZeroText, width/2, height/2 - height*0.25);
     }
   } else if (tutorialStep == 1) {
     if (shop.expanded == false) {
       drawArrowToShop(shop.x, shop.y);
-      text(stepOneText, width/2, height/2 - 100);
+      text(stepOneText, width/2, height/2 - height*0.25);
     }
   } else if (tutorialStep == 2) {
     fill(255, 0, 0);
-    text(stepTwoText, width/2, height/2 - 100);
+    text(stepTwoText, width/2, height/2 - height*0.25);
     if (shop.checkShopStatus()== true && shop.tutorialBoolean == true) {
-      drawArrowToCup(cup.y, cup.x);
+      drawArrowToCup(cup.x, cup.y);
     } else drawArrowToShop(shop.x, shop.y);
   } else if (tutorialStep == 3) {
     if (shop.tutorialBoolean == true) {
       fill(255, 0, 0);
-      text(stepThreeText, width/2, height/2 - 100);
+      text(stepThreeText, width/2, height/2 - height*0.25);
     }
   }
-
   noStroke();
   
   tutorialCheck();
 }
 
+// Method for drawing arrow to cup
 void drawArrowToCup(float cupX, float cupY) {
   float fromX = cupX + cup.cupWidth;         
   float fromY = cupY - cup.cupHeight;        
@@ -90,7 +93,7 @@ void drawArrowToCup(float cupX, float cupY) {
   float pulse = sin(frameCount * 0.1) * 3;
   float arrowSize = baseSize + pulse;
 
-  // Calculate angle (should be toward right)
+  // Calculate angle
   float angle = atan2(toY - fromY, toX - fromX);
 
   // Draw arrowhead at end
@@ -105,6 +108,7 @@ void drawArrowToCup(float cupX, float cupY) {
   popMatrix();
 }
 
+// Method for drawing arrow to shop
 void drawArrowToShop(float shopX, float shopY) {
   float fromX = shopX - shop.w ;
   float fromY = shopY + shop.h/2;
@@ -123,7 +127,7 @@ void drawArrowToShop(float shopX, float shopY) {
   float pulse = sin(frameCount * 0.1) * 3;
   float arrowSize = baseSize + pulse;
 
-  // Calculate angle (should be toward right)
+  // Calculate angle 
   float angle = atan2(toY - fromY, toX - fromX);
 
   // Draw arrowhead at end
@@ -138,17 +142,18 @@ void drawArrowToShop(float shopX, float shopY) {
   popMatrix();
 }
 
+// Method for handling tutorial steps
 void tutorialCheck() {
   if (!tutorialComplete) {
     if (tutorialStep == 0) {
       if (tracker.clicks >=30) {
         tutorialStep = 1;
       }
-    } else if (tutorialStep == 1) { //click shop step
+    } else if (tutorialStep == 1) { 
       if (shop.expanded == true) {
         tutorialStep = 2;
       }
-    } else if (tutorialStep == 2) { //buy upgrade step
+    } else if (tutorialStep == 2) { 
       if (shop.tutorialBoolean == true) {
         tutorialStep = 3;
       }

@@ -1,7 +1,7 @@
 /*
   Class: PauseOverlay
     This class pauses the game with a grey overlay on the screen. 
-    On pause, the user can choose either to continue playing again, meaning the game will be resumed at the paused possition, 
+    On pause, the user can choose either to continue playing again, meaning the game will be resumed at the paused position, 
     or restart the game, meaning the game resets all variables.
 */
 class PauseOverlay {
@@ -12,7 +12,7 @@ class PauseOverlay {
   float resetBtnH = height * 0.1;
   float resetBtnX, resetBtnY;
 
- //Constructor 
+ // Constructor 
   PauseOverlay(float w, float h) {
     btnW = w;
     btnH = h;
@@ -29,7 +29,7 @@ class PauseOverlay {
 
   }
 
-  // Method for displaing the overlay and buttons
+  // Method for displaying the overlay and buttons
   void display() {
     if (isPaused) {
       drawOverlay();      
@@ -39,9 +39,9 @@ class PauseOverlay {
     }
   }
 
-  // Method for drawing the pause-, and return-button as a rectangle 
+  // Method for drawing the pause-, and return-button as rectangles
   void drawPauseButton() {
-fill(isPaused ? color(0, 128, 0) : color(180));
+    fill(isPaused ? color(0, 128, 0) : color(180));
 
     stroke(width * 0.12);
     rect(btnX, btnY, btnW, btnH, height * 0.03);
@@ -73,12 +73,14 @@ fill(isPaused ? color(0, 128, 0) : color(180));
   textSize(height * 0.04);
   }
 
+  // Method for checking if button is clicked
   void isClicked(float mx, float my) {
+    // Check if pause/return button is clicked
     if (mx > btnX && mx < btnX + btnW &&
         my > btnY && my < btnY + btnH) {
       isPaused = !isPaused;
     }
-     // Check if mousepress is on reset-button
+     // Check if reset-button is clicked
     if (isPaused &&
       mx > resetBtnX && mx < resetBtnX + resetBtnW &&
       my > resetBtnY && my < resetBtnY + resetBtnH) {

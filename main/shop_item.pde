@@ -1,3 +1,7 @@
+/*
+  Class: ShopItem
+    Create all items in shop with accompanying icons and info.
+*/
 class ShopItem {
   String name;
   int price;
@@ -5,14 +9,17 @@ class ShopItem {
   PShape shape;
   float rotateAngle;
 
+  // Constructor
   ShopItem(String name, int price, PShape shape, float rotateAngle) {
     this.name = name;
     this.price = price;
     this.shape = shape;
     this.rotateAngle = rotateAngle;
   }
-
+  
+  // Method for displaying item specifics
   void display(float x, float y, float w, float h, boolean affordable, boolean hovered) {
+    // Changes background colors for items
     if (!affordable) {
       fill(180);
     } else {
@@ -26,7 +33,7 @@ class ShopItem {
     stroke(0);
     rect(x, y, w, h);
 
-    // Draw custom shape
+    // Draws custom shape and rotates
     if (shape != null) {
       pushMatrix();
       translate(x + w*0.1, y + h*0.5);
@@ -34,28 +41,28 @@ class ShopItem {
       rotate(rotateAngle);
       shape(shape);
       popMatrix();
-
+      
+      // If item does not have rotate angle, it stays still
       if (rotateAngle != 0) {
         rotateAngle += 0.01;
       }
     }
-
+    
+    // Text for item
     fill(0);
     textAlign(LEFT, CENTER);
+    // Custom size for small screen proportions
     if (screenSize == smallSize) {
       textSize(height * 0.02);
     } else textSize(height * 0.035);
-    text(name + " ($" + price + ")", x + w * 0.25, y + 20);
+    text(name + " ($" + price + ")", x + w * 0.25, y + width*0.05);
+    textSize(height * 0.04);
   }
 }
 
 //////////////////////Shape functions ////////////////////////
-PShape cube;
-float cubeSize = 40;
-float circleRad = 4;
-int circleRes = 40;
-float noiseMag = 1;
 
+// Method for creating an array of items for shop
 ShopItem[] createIcons() {
   PShape lightning = createLightning(0, 0);
   PShape doubleCircle = doubleCircle(0, 0);
@@ -74,15 +81,17 @@ ShopItem[] createIcons() {
   return shopItems;
 }
 
+// Method for creating a circular PShape
 // xFactor and yFactor must be between 0-1
 PShape createCircle(float xFactor, float yFactor) {
   return createShape(ELLIPSE, width * xFactor, height * yFactor, width * 0.05, width * 0.05);
 }
-
+// Method for creating a rectangular PShape
 PShape createRect(float xFactor, float yFactor) {
   return createShape(RECT, width * xFactor, height * yFactor, width * 0.05, width * 0.05);
 }
 
+// Method for creating a double circular PShape
 PShape doubleCircle(float xFactor, float yFactor) {
   PShape group = createShape(GROUP);
   PShape circle1 = createShape(ELLIPSE, width * xFactor, height * yFactor, width * 0.075, width * 0.075);
@@ -96,6 +105,7 @@ PShape doubleCircle(float xFactor, float yFactor) {
   return group;
 }
 
+// Method for creating a star PShape
 PShape star(float xFactor, float yFactor, float radius1, float radius2, int npoints) {
   float angle = TWO_PI / npoints;
   float halfAngle = angle / 2.0;
@@ -116,6 +126,7 @@ PShape star(float xFactor, float yFactor, float radius1, float radius2, int npoi
   return s;
 }
 
+// Method for creating a lightning PShape
 PShape createLightning(float xFactor, float yFactor) {
   float x = width * xFactor;
   float y = height * yFactor;
@@ -123,7 +134,7 @@ PShape createLightning(float xFactor, float yFactor) {
 
   PShape bolt = createShape();
   bolt.beginShape();
-  bolt.fill(255, 215, 0); // Gold/Yellow color
+  bolt.fill(255, 215, 0); 
   bolt.stroke(0);
   bolt.strokeWeight(2);
 
@@ -143,13 +154,14 @@ PShape createLightning(float xFactor, float yFactor) {
   return bolt;
 }
 
+// Method for creating a triangular PShape
 PShape createTriangle(float xFactor, float yFactor, float size) {
   PShape triangle = createShape();
   triangle.beginShape();
-  triangle.fill(255, 100, 0); // Orange
+  triangle.fill(255, 100, 0); 
   triangle.noStroke();
 
-  float h = size * sqrt(3) / 2; // Height of equilateral triangle
+  float h = size * sqrt(3) / 2; 
 
   triangle.vertex(width * xFactor, height * yFactor - h / 2);
   triangle.vertex(width * xFactor - size / 2, height * yFactor + h / 2);
@@ -159,7 +171,7 @@ PShape createTriangle(float xFactor, float yFactor, float size) {
   return triangle;
 }
 
-
+// Method for creating a cross shaped PShape
 PShape createCross(float xFactor, float yFactor, float size) {
   float barWidth = size * 0.2;
   float halfSize = size / 2;
@@ -168,14 +180,12 @@ PShape createCross(float xFactor, float yFactor, float size) {
 
   // Vertical
   PShape vertical = createShape(RECT, width * xFactor - barWidth, height * yFactor - halfSize, barWidth, size);
-  vertical.setFill(color(200, 50, 50));  // Red
-  //vert.setStroke(false);
+  vertical.setFill(color(200, 50, 50));  
   cross.addChild(vertical);
 
   // Horizontal
   PShape horizontal = createShape(RECT, width * xFactor - halfSize, height * yFactor - (barWidth / 2), size, barWidth);
-  horizontal.setFill(color(200, 50, 50));  // Red
-  //horiz.setStroke(false);
+  horizontal.setFill(color(200, 50, 50)); 
   cross.addChild(horizontal);
 
   return cross;

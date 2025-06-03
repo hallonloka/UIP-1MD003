@@ -1,6 +1,6 @@
 /*
-  Class Cup
-    This class creates a coffeecup. If clicked, the cup shakes back and forth, with a few radians. 
+  Class: Cup
+    This class creates a coffee cup. If clicked, the cup shakes back and forth, with a few radians. 
 */
 class Cup {
   float x, y;
@@ -99,7 +99,7 @@ class Cup {
       localY < 40 + cupHeight/2;
   }
 
-  // Method for initilating shake-mode for the cup
+  // Method for initializing shake-mode for the cup
   void shake() {
     shaking = true;
     shakeFrame = 0;

@@ -12,13 +12,13 @@ class Tracker {
     this.y = y;
     this.clicks = clicks;
   }
+  
   // Method for drawig the amount of clicks
   void display() {
     fill(0);
     textAlign(CENTER);
     text(trackerClicks + clicks, width / 8, y);
   }
-
 
   // Method for incrementing the click counter
   void registerClick() {
