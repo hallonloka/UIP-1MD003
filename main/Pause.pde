@@ -63,7 +63,7 @@ fill(isPaused ? color(0, 128, 0) : color(180));
   text(pauseText, width/2, height/2);
 
   // Restart-button
-  fill(200);
+  fill(200,0,0);
   stroke(width * 0.12);
   rect(resetBtnX, resetBtnY, resetBtnW, resetBtnH, 10);
   fill(0);
