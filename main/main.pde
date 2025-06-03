@@ -44,7 +44,8 @@ PVector screenSize;
 
 // Settings of the game
 void settings() {
-  screenSize = smallSize;  // Change to desired screensize: smallSize, mediumSize, largeSize
+  screenSize = largeSize;  //byt till önskad skärmstorlek. small, medium eller large
+  // Change to desired screensize: smallSize, mediumSize, largeSize
   size((int)screenSize.x, (int)screenSize.y);
 }
 
@@ -97,7 +98,7 @@ void draw() {
 void drawStartScreen() {
   background(200, 220, 255);
   textAlign(CENTER, CENTER);
-  textSize(height * 0.075); //roughly equal to size(32)
+  textSize(height * 0.06); //roughly equal to size(32)
   fill(0);
   text(welcomeText, width/2, height/2 - 40);
   textSize(height * 0.05); //roughly equal to size(20)
