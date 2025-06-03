@@ -61,7 +61,6 @@ class Shop {
   boolean tryPurchaseAt(float mx, float my, int playerDrops) {
     if (mouseOverIcon()) {
       expanded = !expanded;
-      print("Shop expanded fr: " + expanded);
       return false;
     }
 
@@ -92,7 +91,6 @@ class Shop {
 
 
   boolean checkShopStatus() {
-    print("checkShopStatus expanded: " + this.expanded);
     return expanded;
   }
 }

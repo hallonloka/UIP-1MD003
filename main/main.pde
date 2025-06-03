@@ -44,7 +44,7 @@ PVector screenSize;
 
 // Settings of the game
 void settings() {
-  screenSize = smallSize;  //byt till önskad skärmstorlek. small, medium eller large
+  screenSize = mediumSize;  //byt till önskad skärmstorlek. small, medium eller large
   // Change to desired screensize: smallSize, mediumSize, largeSize
   size((int)screenSize.x, (int)screenSize.y);
 }
@@ -165,6 +165,7 @@ void resetGame() {
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   clicks = 0;
+  tracker.clicks = 0;
   drops.clear();
 
   ShopItem[] shopItems = createIcons();
