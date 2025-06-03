@@ -58,7 +58,7 @@ void drawTutorialScreen() {
     text("Buy the upgrade!", width/2, height/2 - 100);
     if (shop.checkShopStatus()==true && shop.tutorialBoolean == true) { //TODO
       //arrow to upgrade!!!!!
-      drawArrowToCup(cup.y, cup.x); //placeholder
+      drawArrowToCup(cup.x, cup.y); //placeholder
     } else drawArrowToShop(shop.x, shop.y);
   } else if (tutorialStep == 3) {
     if (shop.tutorialBoolean == true) {
@@ -73,10 +73,10 @@ void drawTutorialScreen() {
 }
 
 void drawArrowToCup(float cupX, float cupY) {
-  float fromX = cupX+cup.cupWidth*2;         
+  float fromX = cupX+cup.cupWidth*1.2;         
   float fromY = cupY- cup.cupHeight;        
   float toX = fromX - cup.cupWidth;       
-  float toY = cupY;
+  float toY = cupY + cupY/6;
 
   stroke(255, 0, 0);
   strokeWeight(4);
