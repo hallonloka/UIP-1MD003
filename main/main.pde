@@ -46,7 +46,6 @@ PVector screenSize;
 void settings() {
   screenSize = smallSize;  //byt till önskad skärmstorlek. small, medium eller large
   // Change to desired screensize: smallSize, mediumSize, largeSize
-  screenSize = mediumSize;
   size((int)screenSize.x, (int)screenSize.y);
 }
 
