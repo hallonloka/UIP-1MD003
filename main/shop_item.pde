@@ -39,12 +39,13 @@ class ShopItem {
         rotateAngle += 0.01;
       }
     }
-   
+
     fill(0);
     textAlign(LEFT, CENTER);
-    textSize(height * 0.035);
+    if (screenSize == smallSize) {
+      textSize(10);
+    } else textSize(height * 0.035);
     text(name + " ($" + price + ")", x + w * 0.25, y + 20);
-    
   }
 }
 
