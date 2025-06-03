@@ -9,7 +9,7 @@ void drawTutorialScreen() {
   // Incrementally redraw strokes to animate
   for (int i = 0; i <500; i++) {
     rotate(50);
-    strokeWeight(1);
+    strokeWeight(height * 0.001);
     stroke(250, 240, 230);
     line(850, i-wave/2, -850, i++);
   }
@@ -34,36 +34,34 @@ void drawTutorialScreen() {
   }
   cup.displayRect();
 
-  strokeWeight(1);
+  strokeWeight(height * 0.001);
   // Add progressbar and click tracker
   progressbar.display();
   //tracker.display();
   fill(255);
-  textSize(20);
+  textSize(height * 0.05); //roughly equal to size(20)
   textAlign(CENTER, CENTER);
 
-//TODO: externalize strings
   if (tutorialStep == 0) {
     if (tracker.clicks <= 50) {
       drawArrowToCup(cup.x, cup.y);
-      text("Click the cup and reach 30 clicks!", width/2, height/2 - 100);
+      text(stepZeroText, width/2, height/2 - 100);
     }
   } else if (tutorialStep == 1) {
     if (shop.expanded == false) {
       drawArrowToShop(shop.x, shop.y);
-      text("Click the shop to buy an upgrade!", width/2, height/2 - 100);
+      text(stepOneText, width/2, height/2 - 100);
     }
   } else if (tutorialStep == 2) {
     fill(255, 0, 0);
-    text("Buy the upgrade!", width/2, height/2 - 100);
-    if (shop.checkShopStatus()==true && shop.tutorialBoolean == true) { //TODO
-      //arrow to upgrade!!!!!
-      drawArrowToCup(cup.y, cup.x); //placeholder
+    text(stepTwoText, width/2, height/2 - 100);
+    if (shop.checkShopStatus()== true && shop.tutorialBoolean == true) {
+      drawArrowToCup(cup.y, cup.x);
     } else drawArrowToShop(shop.x, shop.y);
   } else if (tutorialStep == 3) {
     if (shop.tutorialBoolean == true) {
       fill(255, 0, 0);
-      text("Keep on clicking", width/2, height/2 - 100);
+      text(stepThreeText, width/2, height/2 - 100);
     }
   }
 
@@ -73,20 +71,20 @@ void drawTutorialScreen() {
 }
 
 void drawArrowToCup(float cupX, float cupY) {
-  float fromX = cupX+cup.cupWidth*2;         
-  float fromY = cupY- cup.cupHeight;        
+  float fromX = cupX + cup.cupWidth * 2;         
+  float fromY = cupY - cup.cupHeight;        
   float toX = fromX - cup.cupWidth;       
   float toY = cupY;
 
   stroke(255, 0, 0);
-  strokeWeight(4);
+  strokeWeight(height * 0.004);
   fill(255, 0, 0);
 
   // Draw line from left to cup
   line(fromX, fromY, toX, toY);
 
   // Pulse effect
-  float baseSize = 12;
+  float baseSize = height * 0.03;
   float pulse = sin(frameCount * 0.1) * 3;
   float arrowSize = baseSize + pulse;
 
@@ -112,14 +110,14 @@ void drawArrowToShop(float shopX, float shopY) {
   float toY = shopY + shop.h/2;
 
   stroke(255, 0, 0);
-  strokeWeight(4);
+  strokeWeight(height * 0.004);
   fill(255, 0, 0);
 
   // Draw line from left to cup
   line(fromX, fromY, toX, toY);
 
   // Pulse effect
-  float baseSize = 12;
+  float baseSize = height * 0.03;
   float pulse = sin(frameCount * 0.1) * 3;
   float arrowSize = baseSize + pulse;
 
@@ -154,7 +152,7 @@ void tutorialCheck() {
       }
     } else if (tutorialStep == 3) {
       if (tracker.clicks > 50) {
-        tutorialComplete= true;
+        tutorialComplete = true;
       }
     }
   }

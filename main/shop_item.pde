@@ -39,12 +39,12 @@ class ShopItem {
         rotateAngle += 0.01;
       }
     }
-    if(screenSize == smallSize) {
-      textSize(10); // Set the desired text size
-    }
+   
     fill(0);
     textAlign(LEFT, CENTER);
-    text(name + " ($" + price + ")", x + w*0.25, y + 20);
+    textSize(height * 0.035);
+    text(name + " ($" + price + ")", x + w * 0.25, y + 20);
+    
   }
 }
 

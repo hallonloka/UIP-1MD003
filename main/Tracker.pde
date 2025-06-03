@@ -16,7 +16,7 @@ class Tracker {
   void display() {
     fill(0);
     textAlign(CENTER);
-    text("Clicks: " + clicks, width / 8, y); //TODO: externalize string
+    text(trackerClicks + clicks, width / 8, y);
   }
 
 
