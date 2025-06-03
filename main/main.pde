@@ -44,8 +44,7 @@ PVector screenSize;
 
 // Settings of the game
 void settings() {
-  screenSize = smallSize;
-  // Change to desired screensize: smallSize, mediumSize, largeSize
+  screenSize = smallSize;  // Change to desired screensize: smallSize, mediumSize, largeSize
   size((int)screenSize.x, (int)screenSize.y);
 }
 
@@ -65,7 +64,7 @@ void setup() {
   drops = new ArrayList<Drop>();
   cup = new Cup(width/2, height - height*0.4, height*0.25, height*0.2);
   bean = new Bean();
-  progressbar = new ProgressBar(this, 0.28*width, 0.85*height, 0.5*width, 0.07*height);
+  progressbar = new ProgressBar(this, 0.27*width, 0.85*height, 0.45*width, 0.07*height);
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   file = new SoundFile(this, "click.mp3");
@@ -165,6 +164,7 @@ void resetGame() {
   tracker = new Tracker(0.06*width, 0.06*height, clicks);
 
   clicks = 0;
+  tracker.clicks = 0;
   drops.clear();
 
   ShopItem[] shopItems = createIcons();
