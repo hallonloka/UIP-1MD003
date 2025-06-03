@@ -38,7 +38,7 @@ class ProgressBar{
   void writeLevel() {
     fill(0);
     textAlign(CENTER);
-    text("level " + level, width / 2, y +0.1 * height);
+    text(progressBarLevel + level, width / 2, y +0.1 * height);
   }
 
   void writeProgress() {

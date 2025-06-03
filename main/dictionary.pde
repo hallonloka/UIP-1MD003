@@ -16,6 +16,9 @@ String returnText = "Return";
 // Tracker
 String trackerClicks = "Clicks: ";
 
+// Progress bar
+String progressBarLevel = "Level: ";
+
 
 // Tutorial
 String stepZeroText = "Click the cup and reach 30 clicks!";
@@ -28,7 +31,7 @@ String printActItemText = "Activated item: ";
 String printNotValidShop = "Not enough drops or item already activated.";
 
 // ShopItem
-String itemOne = "Tripple Attack";
+String itemOne = "Triple Attack";
 String itemTwo = "No Negatives";
 String itemThree = "Mega Boost";
 String itemFour = "Double Click";
