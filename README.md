@@ -6,9 +6,9 @@ the purpose of the game is to click on a coffee cup and gain clicks through this
 
 ## Project members
 Group 10: 
-Nora Angéus
-Maria Eriksson
-John McLelland
+Nora Angéus, 
+Maria Eriksson, 
+John McLelland, 
 Tova Radhe
 
 ## How to run 
